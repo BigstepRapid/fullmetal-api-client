@@ -1,31 +1,31 @@
 from jsonrpc2_base.client import Client
-from fullmetal_api_client.objects.utils.deserializer import Deserializer
-from fullmetal_api_client.objects.utils.serializer import Serializer
+from metal_cloud_sdk.objects.utils.deserializer import Deserializer
+from metal_cloud_sdk.objects.utils.serializer import Serializer
 from jsonrpc2_base.jsonrpc_exception import JSONRPCException
 
-class BSI(Client):
+class BSIGuest(Client):
 	__instance = None
 
 	def __init__(self, dictParams, arrFilterPlugins = []):
-		super(BSI, self).__init__(dictParams, arrFilterPlugins)
+		super(BSIGuest, self).__init__(dictParams, arrFilterPlugins)
 
 	@staticmethod
 	def getInstance(dictParams, arrFilterPlugins = []):
 		"""
-		This is a static function for using the BSI class as a singleton.
+		This is a static function for using the BSIGuest class as a singleton.
 		In order to work with only an instance, instead of instantiating the class,
 		call this method.
 
-		@return object BSI.__instance. It will return the same instance, no matter
+		@return object BSIGuest.__instance. It will return the same instance, no matter
 		how many times this function is called.
 		"""
-		if BSI.__instance is None :
-			BSI.__instance = BSI(dictParams, arrFilterPlugins)
+		if BSIGuest.__instance is None :
+			BSIGuest.__instance = BSIGuest(dictParams, arrFilterPlugins)
 
-		return BSI.__instance
+		return BSIGuest.__instance
 
 
-	""" 230 functions available on endpoint. """
+	""" 249 functions available on endpoint. """
 
 	def cluster_create(self, strInfrastructureID, objCluster):
 
@@ -260,19 +260,6 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("infrastructure_user_limits", arrParams))
-
-	def infrastructure_gui_settings_save(self, strInfrastructureID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strInfrastructureID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("infrastructure_gui_settings_save", arrParams)
-
 
 	def instance_edit(self, strInstanceID, objInstanceOperation):
 
@@ -844,6 +831,17 @@ class BSI(Client):
 
 		return Deserializer.deserialize(self.rpc("drive_detach_instance", arrParams))
 
+	def instance_drives(self, strInstanceID):
+
+		arrParams = [
+			strInstanceID,
+		]
+
+		objDrive = self.rpc("instance_drives", arrParams)
+		for strKeyDrive in objDrive:
+			objDrive[strKeyDrive] = Deserializer.deserialize(objDrive[strKeyDrive])
+		return objDrive
+
 	def drive_snapshot_create(self, strDriveID):
 
 		arrParams = [
@@ -1191,19 +1189,6 @@ class BSI(Client):
 		return self.rpc("user_logout", arrParams)
 
 
-	def user_gui_settings_save(self, strUserID, objGUIUserSettings, arrPropertyNames):
-
-		objGUIUserSettings = Serializer.serialize(objGUIUserSettings)
-
-		arrParams = [
-			strUserID,
-			objGUIUserSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("user_gui_settings_save", arrParams)
-
-
 	def throw_error(self, nErrorCode):
 
 		arrParams = [
@@ -1213,28 +1198,6 @@ class BSI(Client):
 		self.rpc("throw_error", arrParams)
 
 
-	def cluster_gui_settings_save(self, strClusterID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strClusterID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("cluster_gui_settings_save", arrParams)
-
-
-	def event_counters(self, strInfrastructureID):
-
-		arrParams = [
-			strInfrastructureID,
-		]
-
-		return self.rpc("event_counters", arrParams)
-
-
 	def infrastructure_get(self, strInfrastructureID):
 
 		arrParams = [
@@ -1242,25 +1205,6 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("infrastructure_get", arrParams))
-
-	def infrastructure_hang_until_touched(self, nInfrastructureID, strKnownValue):
-
-		arrParams = [
-			nInfrastructureID,
-			strKnownValue,
-		]
-
-		return self.rpc("infrastructure_hang_until_touched", arrParams)
-
-
-	def instance_interface_ips(self, nInstanceInterfaceID):
-
-		arrParams = [
-			nInstanceInterfaceID,
-		]
-
-		return self.rpc("instance_interface_ips", arrParams)
-
 
 	def instance_get(self, strInstanceID):
 
@@ -1278,19 +1222,6 @@ class BSI(Client):
 
 		return Deserializer.deserialize(self.rpc("instance_array_get", arrParams))
 
-	def instance_array_gui_settings_save(self, strInstanceArrayID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strInstanceArrayID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("instance_array_gui_settings_save", arrParams)
-
-
 	def subnet_get(self, strSubnetID):
 
 		arrParams = [
@@ -1298,81 +1229,6 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("subnet_get", arrParams))
-
-	def data_lake_gui_settings_save(self, strDataLakeID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strDataLakeID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("data_lake_gui_settings_save", arrParams)
-
-
-	def monitoring_instance_measurement_value_get(self, nInstanceMeasurementID):
-
-		arrParams = [
-			nInstanceMeasurementID,
-		]
-
-		return self.rpc("monitoring_instance_measurement_value_get", arrParams)
-
-
-	def monitoring_instance_measurements_get_for_instance(self, strInstanceID, bIgnoreVirtualEthernetInterfaces = False):
-
-		arrParams = [
-			strInstanceID,
-			bIgnoreVirtualEthernetInterfaces,
-		]
-
-		return self.rpc("monitoring_instance_measurements_get_for_instance", arrParams)
-
-
-	def monitoring_instance_measurements_rendering_get(self, strInstanceID, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
-
-		objRenderingOptions = Serializer.serialize(objRenderingOptions)
-
-		arrParams = [
-			strInstanceID,
-			arrMeasurements,
-			objRenderingOptions,
-			bEncodeBase64,
-		]
-
-		return self.rpc("monitoring_instance_measurements_rendering_get", arrParams)
-
-
-	def monitoring_instance_interface_measurements_rendering_get(self, nInstanceInterfaceID, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
-
-		objRenderingOptions = Serializer.serialize(objRenderingOptions)
-
-		arrParams = [
-			nInstanceInterfaceID,
-			arrMeasurements,
-			objRenderingOptions,
-			bEncodeBase64,
-		]
-
-		return self.rpc("monitoring_instance_interface_measurements_rendering_get", arrParams)
-
-
-	def monitoring_network_measurements_rendering_get(self, strNetworkID, strNetworkTrafficType, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
-
-		objRenderingOptions = Serializer.serialize(objRenderingOptions)
-
-		arrParams = [
-			strNetworkID,
-			strNetworkTrafficType,
-			arrMeasurements,
-			objRenderingOptions,
-			bEncodeBase64,
-		]
-
-		return self.rpc("monitoring_network_measurements_rendering_get", arrParams)
-
 
 	def network_get(self, strNetworkID):
 
@@ -1382,19 +1238,6 @@ class BSI(Client):
 
 		return Deserializer.deserialize(self.rpc("network_get", arrParams))
 
-	def network_gui_settings_save(self, strNetworkID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strNetworkID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("network_gui_settings_save", arrParams)
-
-
 	def server_type_get(self, strServerTypeID):
 
 		arrParams = [
@@ -1403,18 +1246,6 @@ class BSI(Client):
 
 		return Deserializer.deserialize(self.rpc("server_type_get", arrParams))
 
-	def server_type_available_server_count(self, strUserIDOwner, strDatacenterName, strServerTypeID, nMaximumResults):
-
-		arrParams = [
-			strUserIDOwner,
-			strDatacenterName,
-			strServerTypeID,
-			nMaximumResults,
-		]
-
-		return self.rpc("server_type_available_server_count", arrParams)
-
-
 	def shared_drive_get(self, strSharedDriveID):
 
 		arrParams = [
@@ -1422,19 +1253,6 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("shared_drive_get", arrParams))
-
-	def shared_drive_gui_settings_save(self, strSharedDriveID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strSharedDriveID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("shared_drive_gui_settings_save", arrParams)
-
 
 	def drive_get(self, strDriveID):
 
@@ -1451,19 +1269,6 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("drive_array_get", arrParams))
-
-	def drive_array_gui_settings_save(self, strDriveArrayID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strDriveArrayID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("drive_array_gui_settings_save", arrParams)
-
 
 	def volume_template_get(self, strVolumeTemplateID):
 
@@ -1500,34 +1305,13 @@ class BSI(Client):
 		return self.rpc("user_authenticate_password_encrypted", arrParams)
 
 
-	def transport_request_public_key(self, bGenerateNewIfNotFound = True):
+	def user_authenticate_guest(self):
 
 		arrParams = [
-			bGenerateNewIfNotFound,
 		]
 
-		return self.rpc("transport_request_public_key", arrParams)
+		return self.rpc("user_authenticate_guest", arrParams)
 
-
-	def user_email_to_user_id(self, strLoginEmail):
-
-		arrParams = [
-			strLoginEmail,
-		]
-
-		return self.rpc("user_email_to_user_id", arrParams)
-
-
-	def instance_drives(self, strInstanceID):
-
-		arrParams = [
-			strInstanceID,
-		]
-
-		objDrive = self.rpc("instance_drives", arrParams)
-		for strKeyDrive in objDrive:
-			objDrive[strKeyDrive] = Deserializer.deserialize(objDrive[strKeyDrive])
-		return objDrive
 
 	def infrastructure_deploy_blockers(self, strInfrastructureID):
 
@@ -1726,32 +1510,6 @@ class BSI(Client):
 
 		return Deserializer.deserialize(self.rpc("container_platform_suspend", arrParams))
 
-	def container_array_gui_settings_save(self, strContainerArrayID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strContainerArrayID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("container_array_gui_settings_save", arrParams)
-
-
-	def container_platform_gui_settings_save(self, strContainerPlatformID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strContainerPlatformID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("container_platform_gui_settings_save", arrParams)
-
-
 	def container_platform_container_arrays(self, strContainerPlatformID, arrContainerArrayIDs = None):
 
 		arrParams = [
@@ -1842,15 +1600,6 @@ class BSI(Client):
 		return self.rpc("query_structured", arrParams)
 
 
-	def resource_utilization_summary_start_timestamp_default(self, strUserID):
-
-		arrParams = [
-			strUserID,
-		]
-
-		return self.rpc("resource_utilization_summary_start_timestamp_default", arrParams)
-
-
 	def cluster_automatic_management_status_set(self, strClusterID, bStatus):
 
 		arrParams = [
@@ -1904,28 +1653,6 @@ class BSI(Client):
 			objServerType[strKeyServerType] = Deserializer.deserialize(objServerType[strKeyServerType])
 		return objServerType
 
-	def infrastructure_public_designs(self):
-
-		arrParams = [
-		]
-
-		return self.rpc("infrastructure_public_designs", arrParams)
-
-
-	def server_type_available_server_count_batch(self, strUserIDOwner, strDatacenterName, arrServerTypeIDs, nMaximumResults, bIncludeReservedForUser = False, nInstanceArrayID = None):
-
-		arrParams = [
-			strUserIDOwner,
-			strDatacenterName,
-			arrServerTypeIDs,
-			nMaximumResults,
-			bIncludeReservedForUser,
-			nInstanceArrayID,
-		]
-
-		return self.rpc("server_type_available_server_count_batch", arrParams)
-
-
 	def user_server_type_reservations_unused(self, strUserID, strDatacenterName):
 
 		arrParams = [
@@ -1954,16 +1681,13 @@ class BSI(Client):
 		return self.rpc("user_franchise_get", arrParams)
 
 
-	def subnet_create_from_owned_subnet_pool(self, strNetworkID, objSubnet):
-
-		objSubnet = Serializer.serialize(objSubnet)
+	def server_types_datacenter(self, strDatacenterName):
 
 		arrParams = [
-			strNetworkID,
-			objSubnet,
+			strDatacenterName,
 		]
 
-		return self.rpc("subnet_create_from_owned_subnet_pool", arrParams)
+		return self.rpc("server_types_datacenter", arrParams)
 
 
 	def user_authenticator_has(self, strUserID):
@@ -1975,15 +1699,6 @@ class BSI(Client):
 		return self.rpc("user_authenticator_has", arrParams)
 
 
-	def server_types_datacenter(self, strDatacenterName):
-
-		arrParams = [
-			strDatacenterName,
-		]
-
-		return self.rpc("server_types_datacenter", arrParams)
-
-
 	def prices_history(self, bExcludeFuturePrices = False, bOnlyActivePrices = False):
 
 		arrParams = [
@@ -1992,126 +1707,6 @@ class BSI(Client):
 		]
 
 		return self.rpc("prices_history", arrParams)
-
-
-	def container_cluster_create(self, strInfrastructureID, objContainerCluster):
-
-		objContainerCluster = Serializer.serialize(objContainerCluster)
-
-		arrParams = [
-			strInfrastructureID,
-			objContainerCluster,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_create", arrParams))
-
-	def container_cluster_get(self, strContainerClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
-
-		arrParams = [
-			strContainerClusterID,
-			bAccessSaaSAPI,
-			nAccessSaaSAPITimeoutSeconds,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_get", arrParams))
-
-	def container_cluster_edit(self, strContainerClusterID, objContainerClusterOperation):
-
-		objContainerClusterOperation = Serializer.serialize(objContainerClusterOperation)
-
-		arrParams = [
-			strContainerClusterID,
-			objContainerClusterOperation,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_edit", arrParams))
-
-	def container_cluster_stop(self, strContainerClusterID):
-
-		arrParams = [
-			strContainerClusterID,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_stop", arrParams))
-
-	def container_cluster_start(self, strContainerClusterID):
-
-		arrParams = [
-			strContainerClusterID,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_start", arrParams))
-
-	def container_cluster_delete(self, strContainerClusterID):
-
-		arrParams = [
-			strContainerClusterID,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_delete", arrParams))
-
-	def container_clusters(self, strInfrastructureID, arrContainerClusterIDs = None):
-
-		arrParams = [
-			strInfrastructureID,
-			arrContainerClusterIDs,
-		]
-
-		objContainerCluster = self.rpc("container_clusters", arrParams)
-		for strKeyContainerCluster in objContainerCluster:
-			objContainerCluster[strKeyContainerCluster] = Deserializer.deserialize(objContainerCluster[strKeyContainerCluster])
-		return objContainerCluster
-
-	def container_cluster_suspend(self, strContainerClusterID):
-
-		arrParams = [
-			strContainerClusterID,
-		]
-
-		return Deserializer.deserialize(self.rpc("container_cluster_suspend", arrParams))
-
-	def container_cluster_automatic_management_status_set(self, strContainerClusterID, bStatus):
-
-		arrParams = [
-			strContainerClusterID,
-			bStatus,
-		]
-
-		self.rpc("container_cluster_automatic_management_status_set", arrParams)
-
-
-	def container_cluster_gui_settings_save(self, strContainerClusterID, objGUIProductSettings, arrPropertyNames):
-
-		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
-
-		arrParams = [
-			strContainerClusterID,
-			objGUIProductSettings,
-			arrPropertyNames,
-		]
-
-		self.rpc("container_cluster_gui_settings_save", arrParams)
-
-
-	def user_prices_history(self, strUserID, bExcludeFuturePrices = False, bOnlyActivePrices = False, bExpandWithPrivateDatacenters = True):
-
-		arrParams = [
-			strUserID,
-			bExcludeFuturePrices,
-			bOnlyActivePrices,
-			bExpandWithPrivateDatacenters,
-		]
-
-		return self.rpc("user_prices_history", arrParams)
-
-
-	def user_prices(self, strUserID):
-
-		arrParams = [
-			strUserID,
-		]
-
-		return self.rpc("user_prices", arrParams)
 
 
 	def fs_create(self, strFSURL, strType, strPermission = None):
@@ -2218,6 +1813,113 @@ class BSI(Client):
 		self.rpc("fs_write", arrParams)
 
 
+	def container_cluster_create(self, strInfrastructureID, objContainerCluster):
+
+		objContainerCluster = Serializer.serialize(objContainerCluster)
+
+		arrParams = [
+			strInfrastructureID,
+			objContainerCluster,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_create", arrParams))
+
+	def container_cluster_get(self, strContainerClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+
+		arrParams = [
+			strContainerClusterID,
+			bAccessSaaSAPI,
+			nAccessSaaSAPITimeoutSeconds,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_get", arrParams))
+
+	def container_cluster_edit(self, strContainerClusterID, objContainerClusterOperation):
+
+		objContainerClusterOperation = Serializer.serialize(objContainerClusterOperation)
+
+		arrParams = [
+			strContainerClusterID,
+			objContainerClusterOperation,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_edit", arrParams))
+
+	def container_cluster_stop(self, strContainerClusterID):
+
+		arrParams = [
+			strContainerClusterID,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_stop", arrParams))
+
+	def container_cluster_start(self, strContainerClusterID):
+
+		arrParams = [
+			strContainerClusterID,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_start", arrParams))
+
+	def container_cluster_delete(self, strContainerClusterID):
+
+		arrParams = [
+			strContainerClusterID,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_delete", arrParams))
+
+	def container_clusters(self, strInfrastructureID, arrContainerClusterIDs = None):
+
+		arrParams = [
+			strInfrastructureID,
+			arrContainerClusterIDs,
+		]
+
+		objContainerCluster = self.rpc("container_clusters", arrParams)
+		for strKeyContainerCluster in objContainerCluster:
+			objContainerCluster[strKeyContainerCluster] = Deserializer.deserialize(objContainerCluster[strKeyContainerCluster])
+		return objContainerCluster
+
+	def container_cluster_suspend(self, strContainerClusterID):
+
+		arrParams = [
+			strContainerClusterID,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_suspend", arrParams))
+
+	def container_cluster_automatic_management_status_set(self, strContainerClusterID, bStatus):
+
+		arrParams = [
+			strContainerClusterID,
+			bStatus,
+		]
+
+		self.rpc("container_cluster_automatic_management_status_set", arrParams)
+
+
+	def user_prices_history(self, strUserID, bExcludeFuturePrices = False, bOnlyActivePrices = False, bExpandWithPrivateDatacenters = True):
+
+		arrParams = [
+			strUserID,
+			bExcludeFuturePrices,
+			bOnlyActivePrices,
+			bExpandWithPrivateDatacenters,
+		]
+
+		return self.rpc("user_prices_history", arrParams)
+
+
+	def user_prices(self, strUserID):
+
+		arrParams = [
+			strUserID,
+		]
+
+		return self.rpc("user_prices", arrParams)
+
+
 	def fs_download_url(self, strFSURL):
 
 		arrParams = [
@@ -2243,6 +1945,312 @@ class BSI(Client):
 		]
 
 		return Deserializer.deserialize(self.rpc("user_limits", arrParams))
+
+	def transport_request_public_key(self, bGenerateNewIfNotFound = True):
+
+		arrParams = [
+			bGenerateNewIfNotFound,
+		]
+
+		return self.rpc("transport_request_public_key", arrParams)
+
+
+	def cluster_gui_settings_save(self, strClusterID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strClusterID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("cluster_gui_settings_save", arrParams)
+
+
+	def container_array_gui_settings_save(self, strContainerArrayID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strContainerArrayID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("container_array_gui_settings_save", arrParams)
+
+
+	def container_cluster_gui_settings_save(self, strContainerClusterID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strContainerClusterID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("container_cluster_gui_settings_save", arrParams)
+
+
+	def container_platform_gui_settings_save(self, strContainerPlatformID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strContainerPlatformID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("container_platform_gui_settings_save", arrParams)
+
+
+	def data_lake_gui_settings_save(self, strDataLakeID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strDataLakeID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("data_lake_gui_settings_save", arrParams)
+
+
+	def event_counters(self, strInfrastructureID):
+
+		arrParams = [
+			strInfrastructureID,
+		]
+
+		return self.rpc("event_counters", arrParams)
+
+
+	def infrastructure_gui_settings_save(self, strInfrastructureID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strInfrastructureID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("infrastructure_gui_settings_save", arrParams)
+
+
+	def infrastructure_hang_until_touched(self, nInfrastructureID, strKnownValue):
+
+		arrParams = [
+			nInfrastructureID,
+			strKnownValue,
+		]
+
+		return self.rpc("infrastructure_hang_until_touched", arrParams)
+
+
+	def infrastructure_public_designs(self):
+
+		arrParams = [
+		]
+
+		return self.rpc("infrastructure_public_designs", arrParams)
+
+
+	def instance_interface_ips(self, nInstanceInterfaceID):
+
+		arrParams = [
+			nInstanceInterfaceID,
+		]
+
+		return self.rpc("instance_interface_ips", arrParams)
+
+
+	def instance_array_gui_settings_save(self, strInstanceArrayID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strInstanceArrayID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("instance_array_gui_settings_save", arrParams)
+
+
+	def subnet_create_from_owned_subnet_pool(self, strNetworkID, objSubnet):
+
+		objSubnet = Serializer.serialize(objSubnet)
+
+		arrParams = [
+			strNetworkID,
+			objSubnet,
+		]
+
+		return self.rpc("subnet_create_from_owned_subnet_pool", arrParams)
+
+
+	def monitoring_instance_measurement_value_get(self, nInstanceMeasurementID):
+
+		arrParams = [
+			nInstanceMeasurementID,
+		]
+
+		return self.rpc("monitoring_instance_measurement_value_get", arrParams)
+
+
+	def monitoring_instance_measurements_get_for_instance(self, strInstanceID, bIgnoreVirtualEthernetInterfaces = False):
+
+		arrParams = [
+			strInstanceID,
+			bIgnoreVirtualEthernetInterfaces,
+		]
+
+		return self.rpc("monitoring_instance_measurements_get_for_instance", arrParams)
+
+
+	def monitoring_instance_measurements_rendering_get(self, strInstanceID, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
+
+		objRenderingOptions = Serializer.serialize(objRenderingOptions)
+
+		arrParams = [
+			strInstanceID,
+			arrMeasurements,
+			objRenderingOptions,
+			bEncodeBase64,
+		]
+
+		return self.rpc("monitoring_instance_measurements_rendering_get", arrParams)
+
+
+	def monitoring_instance_interface_measurements_rendering_get(self, nInstanceInterfaceID, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
+
+		objRenderingOptions = Serializer.serialize(objRenderingOptions)
+
+		arrParams = [
+			nInstanceInterfaceID,
+			arrMeasurements,
+			objRenderingOptions,
+			bEncodeBase64,
+		]
+
+		return self.rpc("monitoring_instance_interface_measurements_rendering_get", arrParams)
+
+
+	def monitoring_network_measurements_rendering_get(self, strNetworkID, strNetworkTrafficType, arrMeasurements, objRenderingOptions = [], bEncodeBase64 = True):
+
+		objRenderingOptions = Serializer.serialize(objRenderingOptions)
+
+		arrParams = [
+			strNetworkID,
+			strNetworkTrafficType,
+			arrMeasurements,
+			objRenderingOptions,
+			bEncodeBase64,
+		]
+
+		return self.rpc("monitoring_network_measurements_rendering_get", arrParams)
+
+
+	def network_gui_settings_save(self, strNetworkID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strNetworkID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("network_gui_settings_save", arrParams)
+
+
+	def resource_utilization_summary_start_timestamp_default(self, strUserID):
+
+		arrParams = [
+			strUserID,
+		]
+
+		return self.rpc("resource_utilization_summary_start_timestamp_default", arrParams)
+
+
+	def server_type_available_server_count(self, strUserIDOwner, strDatacenterName, strServerTypeID, nMaximumResults):
+
+		arrParams = [
+			strUserIDOwner,
+			strDatacenterName,
+			strServerTypeID,
+			nMaximumResults,
+		]
+
+		return self.rpc("server_type_available_server_count", arrParams)
+
+
+	def server_type_available_server_count_batch(self, strUserIDOwner, strDatacenterName, arrServerTypeIDs, nMaximumResults, bIncludeReservedForUser = False, nInstanceArrayID = None):
+
+		arrParams = [
+			strUserIDOwner,
+			strDatacenterName,
+			arrServerTypeIDs,
+			nMaximumResults,
+			bIncludeReservedForUser,
+			nInstanceArrayID,
+		]
+
+		return self.rpc("server_type_available_server_count_batch", arrParams)
+
+
+	def shared_drive_gui_settings_save(self, strSharedDriveID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strSharedDriveID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("shared_drive_gui_settings_save", arrParams)
+
+
+	def drive_array_gui_settings_save(self, strDriveArrayID, objGUIProductSettings, arrPropertyNames):
+
+		objGUIProductSettings = Serializer.serialize(objGUIProductSettings)
+
+		arrParams = [
+			strDriveArrayID,
+			objGUIProductSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("drive_array_gui_settings_save", arrParams)
+
+
+	def user_gui_settings_save(self, strUserID, objGUIUserSettings, arrPropertyNames):
+
+		objGUIUserSettings = Serializer.serialize(objGUIUserSettings)
+
+		arrParams = [
+			strUserID,
+			objGUIUserSettings,
+			arrPropertyNames,
+		]
+
+		self.rpc("user_gui_settings_save", arrParams)
+
+
+	def user_email_to_user_id(self, strLoginEmail):
+
+		arrParams = [
+			strLoginEmail,
+		]
+
+		return self.rpc("user_email_to_user_id", arrParams)
+
 
 	def instance_monitoring_data_get(self, nInstanceID, nGranularityMinutes = 1, strTimestampStart = None, strTimestampEnd = None):
 
@@ -2280,15 +2288,6 @@ class BSI(Client):
 		return self.rpc("container_platform_monitoring_data_get", arrParams)
 
 
-	def license_type_for_volume_template(self, strVolumeTemplateID):
-
-		arrParams = [
-			strVolumeTemplateID,
-		]
-
-		return self.rpc("license_type_for_volume_template", arrParams)
-
-
 	def data_lake_core_site_conf_download_url(self, strUserID, nDataLakeID):
 
 		arrParams = [
@@ -2299,14 +2298,23 @@ class BSI(Client):
 		return self.rpc("data_lake_core_site_conf_download_url", arrParams)
 
 
-	def secure_gateway_authorize_resource(self, strResourceUrl):
+	def dataset_get(self, publishedDatasetID):
 
 		arrParams = [
-			strResourceUrl,
+			publishedDatasetID,
 		]
 
-		self.rpc("secure_gateway_authorize_resource", arrParams)
+		return Deserializer.deserialize(self.rpc("dataset_get", arrParams))
 
+	def cluster_app(self, strClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+
+		arrParams = [
+			strClusterID,
+			bAccessSaaSAPI,
+			nAccessSaaSAPITimeoutSeconds,
+		]
+
+		return Deserializer.deserialize(self.rpc("cluster_app", arrParams))
 
 	def container_get(self, strContainerID):
 
@@ -2338,6 +2346,42 @@ class BSI(Client):
 		return self.rpc("container_logs", arrParams)
 
 
+	def container_array_drive_arrays(self, strContainerArrayID):
+
+		arrParams = [
+			strContainerArrayID,
+		]
+
+		return self.rpc("container_array_drive_arrays", arrParams)
+
+
+	def container_cluster_app(self, strContainerClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+
+		arrParams = [
+			strContainerClusterID,
+			bAccessSaaSAPI,
+			nAccessSaaSAPITimeoutSeconds,
+		]
+
+		return Deserializer.deserialize(self.rpc("container_cluster_app", arrParams))
+
+	def drive_attach_container(self, strDriveID, strContainerID):
+
+		arrParams = [
+			strDriveID,
+			strContainerID,
+		]
+
+		return Deserializer.deserialize(self.rpc("drive_attach_container", arrParams))
+
+	def drive_detach_container(self, strDriveID):
+
+		arrParams = [
+			strDriveID,
+		]
+
+		return Deserializer.deserialize(self.rpc("drive_detach_container", arrParams))
+
 	def container_drives(self, strContainerID):
 
 		arrParams = [
@@ -2358,32 +2402,168 @@ class BSI(Client):
 		return self.rpc("container_array_shared_drives", arrParams)
 
 
-	def cluster_app(self, strClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+	def dataset_create(self, strUserID, objDataset):
+
+		objDataset = Serializer.serialize(objDataset)
 
 		arrParams = [
-			strClusterID,
+			strUserID,
+			objDataset,
+		]
+
+		return Deserializer.deserialize(self.rpc("dataset_create", arrParams))
+
+	def dataset_edit(self, nDatasetID, objChangedDataset):
+
+		objChangedDataset = Serializer.serialize(objChangedDataset)
+
+		arrParams = [
+			nDatasetID,
+			objChangedDataset,
+		]
+
+		self.rpc("dataset_edit", arrParams)
+
+
+	def dataset_delete(self, nDatasetID):
+
+		arrParams = [
+			nDatasetID,
+		]
+
+		self.rpc("dataset_delete", arrParams)
+
+
+	def dataset_subscription_create(self, nDatasetID, strUserID):
+
+		arrParams = [
+			nDatasetID,
+			strUserID,
+		]
+
+		return Deserializer.deserialize(self.rpc("dataset_subscription_create", arrParams))
+
+	def dataset_subscription_delete(self, nDatasetSubscriptionID):
+
+		arrParams = [
+			nDatasetSubscriptionID,
+		]
+
+		self.rpc("dataset_subscription_delete", arrParams)
+
+
+	def user_dataset_subscriptions(self, strUserID):
+
+		arrParams = [
+			strUserID,
+		]
+
+		arrDatasetSubscriptions = self.rpc("user_dataset_subscriptions", arrParams)
+		for index in range(len(arrDatasetSubscriptions)):
+			arrDatasetSubscriptions[index] = Deserializer.deserialize(arrDatasetSubscriptions[index])
+		return arrDatasetSubscriptions
+
+	def datacenter_get(self, strUserID = None, strDatacenterName):
+
+		arrParams = [
+			strUserID,
+			strDatacenterName,
+		]
+
+		return Deserializer.deserialize(self.rpc("datacenter_get", arrParams))
+
+	def infrastructure_overview_children_products(self, strInfrastructureID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+
+		arrParams = [
+			strInfrastructureID,
 			bAccessSaaSAPI,
 			nAccessSaaSAPITimeoutSeconds,
 		]
 
-		return Deserializer.deserialize(self.rpc("cluster_app", arrParams))
-
-	def container_array_drive_arrays(self, strContainerArrayID):
-
-		arrParams = [
-			strContainerArrayID,
-		]
-
-		return self.rpc("container_array_drive_arrays", arrParams)
+		return self.rpc("infrastructure_overview_children_products", arrParams)
 
 
-	def container_cluster_app(self, strContainerClusterID, bAccessSaaSAPI = True, nAccessSaaSAPITimeoutSeconds = 10):
+	def user_get_brand(self, nUserID):
 
 		arrParams = [
-			strContainerClusterID,
-			bAccessSaaSAPI,
-			nAccessSaaSAPITimeoutSeconds,
+			nUserID,
 		]
 
-		return Deserializer.deserialize(self.rpc("container_cluster_app", arrParams))
+		return self.rpc("user_get_brand", arrParams)
+
+
+	def license_types_for_volume_template(self, strVolumeTemplateID):
+
+		arrParams = [
+			strVolumeTemplateID,
+		]
+
+		return self.rpc("license_types_for_volume_template", arrParams)
+
+
+	def published_datasets_updated(self, strMaintainerUserID):
+
+		arrParams = [
+			strMaintainerUserID,
+		]
+
+		arrDatasets = self.rpc("published_datasets_updated", arrParams)
+		for index in range(len(arrDatasets)):
+			arrDatasets[index] = Deserializer.deserialize(arrDatasets[index])
+		return arrDatasets
+
+	def datacenter_datasets(self, strDatacenterLabel):
+
+		arrParams = [
+			strDatacenterLabel,
+		]
+
+		arrDatasets = self.rpc("datacenter_datasets", arrParams)
+		for index in range(len(arrDatasets)):
+			arrDatasets[index] = Deserializer.deserialize(arrDatasets[index])
+		return arrDatasets
+
+	def user_datasets_managed(self, strMaintainerUserID):
+
+		arrParams = [
+			strMaintainerUserID,
+		]
+
+		self.rpc("user_datasets_managed", arrParams)
+
+
+	def datastore_publishers(self):
+
+		arrParams = [
+		]
+
+		self.rpc("datastore_publishers", arrParams)
+
+
+	def datastore_publisher_create(self, nPublisherUserID):
+
+		arrParams = [
+			nPublisherUserID,
+		]
+
+		self.rpc("datastore_publisher_create", arrParams)
+
+
+	def datastore_publisher_delete(self, nDatastorePublisherID):
+
+		arrParams = [
+			nDatastorePublisherID,
+		]
+
+		self.rpc("datastore_publisher_delete", arrParams)
+
+
+	def support_ticket_options(self, strUserLanguage):
+
+		arrParams = [
+			strUserLanguage,
+		]
+
+		return self.rpc("support_ticket_options", arrParams)
+
 

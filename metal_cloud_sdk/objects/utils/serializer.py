@@ -57,7 +57,7 @@ class Serializer(object):
             if not strAttr.startswith("__"):
                 setattr(objOb, strAttr, Serializer._recursive_encode(getattr(objOb, strAttr)))
 
-        module = importlib.import_module('fullmetal_api_client.objects.' + type(objOb).__name__.lower())
+        module = importlib.import_module('metal_cloud_sdk.objects.' + type(objOb).__name__.lower())
 
         return Serializer._encode(objOb, getattr(module, type(objOb).__name__))
 
