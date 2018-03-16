@@ -1,6 +1,6 @@
 from jsonrpc2_base.client import Client
-from fullmetal_api_client.objects.utils.deserializer import Deserializer
-from fullmetal_api_client.objects.utils.serializer import Serializer
+from metal-cloud-sdk.objects.utils.deserializer import Deserializer
+from metal-cloud-sdk.objects.utils.serializer import Serializer
 from jsonrpc2_base.jsonrpc_exception import JSONRPCException
 
 class BSI(Client):

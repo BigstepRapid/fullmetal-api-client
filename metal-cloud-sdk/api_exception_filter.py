@@ -1,4 +1,4 @@
-from fullmetal_api_client.api_exception import ApiException
+from metal-cloud-sdk.api_exception import ApiException
 from jsonrpc2_base.plugins.client.client_plugin_base import ClientPluginBase
 
 class ApiExceptionFilter(ClientPluginBase):
