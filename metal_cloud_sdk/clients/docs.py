@@ -1,6 +1,6 @@
 from jsonrpc2_base.client import Client
-from metal-cloud-sdk.objects.utils.deserializer import Deserializer
-from metal-cloud-sdk.objects.utils.serializer import Serializer
+from metal_cloud_sdk.objects.utils.deserializer import Deserializer
+from metal_cloud_sdk.objects.utils.serializer import Serializer
 from jsonrpc2_base.jsonrpc_exception import JSONRPCException
 
 class Docs(Client):
