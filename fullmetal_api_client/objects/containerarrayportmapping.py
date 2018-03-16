@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class PortMapping(object):
+class ContainerArrayPortMapping(object):
 	"""
 	ContainerArray port resource that facilitates inter-container and external
 	communication.

@@ -1,1 +1,1 @@
-Python client for the FullMetal infrastructure.
+Python client for the MetalCloud infrastructure.

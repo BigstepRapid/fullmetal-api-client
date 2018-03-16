@@ -40,13 +40,19 @@ class Datacenter(object):
 
 	"""
 	"""
-	datacenter_type = "bsi_metal";
+	datacenter_type = "metal_cloud";
 
 	"""
 	ISO 8601 timestamp which holds the date and time when the datacenter was
 	created through the API. Example format: 2013-11-29T13:00:01Z.
 	"""
 	datacenter_created_timestamp = "0000-00-00T00:00:00Z";
+
+	"""
+	True for datacenters which are under construction, beeing phased out, are to
+	be avoided temporarily, or no longer exist.
+	"""
+	datacenter_hidden = False;
 
 	"""
 	The schema type

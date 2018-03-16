@@ -2,7 +2,8 @@
 
 class Container(object):
 	"""
-	A Container represents an application instance.
+	A Container is a child product of the ContainerArray and represents a
+	compute node.
 	"""
 
 	def __init__(self):
@@ -10,54 +11,86 @@ class Container(object):
 
 
 	"""
-	The label is used to uniquely identify a certain Container. It is
-	automatically generated and cannot be edited.
+	The ID of the Container which can be used instead of the
+	<code>container_label</code> or <code>container_subdomain</code> when
+	calling the API functions. It is automatically generated and cannot be
+	edited.
 	"""
-	container_label = None;
+	container_id = None;
 
 	"""
-	The ID of the parent ContainerArray.
+	This property helps ensure that edit operations don’t overwrite other,
+	more recent changes made to the same object. It gets updated automatically
+	after each successful edit operation.
+	"""
+	container_change_id = None;
+
+	"""
+	The Container is a child of a ContainerArray.
 	"""
 	container_array_id = None;
 
 	"""
-	The host on which the Container was created.
+	Represents the infrastructure ID to which the Container belongs.
 	"""
-	container_host = None;
+	infrastructure_id = None;
 
 	"""
-	The random host ports allocated by Marathon, mapped to the 8091 port that
-	the Container listens to and to the port mappings defined by the user.
+	The Container's unique label is used to create the
+	<code>container_subdomain</code>. It is editable and can be used to call API
+	functions.
 	"""
-	container_ports = [];
+	container_label = None;
+
+	"""
+	Automatically created based on <code>container_label</code>. It is a unique
+	reference to the Container object.
+	"""
+	container_subdomain = None;
+
+	"""
+	Automatically created based on <code>container_label</code>. It is a unique
+	reference to the Container object to be used within the ContainerPlatform
+	network.
+	"""
+	container_subdomain_internal = None;
+
+	"""
+	The status of the Container.
+	"""
+	container_service_status = None;
+
+	"""
+	The operation type, operation status and modified Container object.
+	"""
+	container_operation = None;
+
+	"""
+	Credentials used to connect to the Container.
+	"""
+	container_credentials = None;
+
+	"""
+	All <a:schema>ContainerInterface</a:schema> objects.
+	"""
+	container_interfaces = [];
+
+	"""
+	The index of the Container within the ContainerArray.
+	"""
+	container_index = None;
 
 	"""
 	ISO 8601 timestamp which holds the date and time when the Container was
-	staged. Example format: 2013-11-29T13:00:01Z.
+	created. Example format: 2013-11-29T13:00:01Z.
 	"""
 	container_created_timestamp = "0000-00-00T00:00:00Z";
 
 	"""
 	ISO 8601 timestamp which holds the date and time when the Container was
-	started. Example format: 2013-11-29T13:00:01Z.
+	edited. Example format: 2013-11-29T13:00:01Z.
 	"""
-	container_started_timestamp = "0000-00-00T00:00:00Z";
-
-	"""
-	ISO 8601 timestamp which holds the date and time of the Container version.
-	Example format: 2013-11-29T13:00:01Z.
-	"""
-	container_version = "0000-00-00T00:00:00Z";
-
-	"""
-	The current status of the Container.
-	"""
-	container_status = None;
-
-	"""
-	The files of the Container.
-	"""
-	container_files = [];
+	container_updated_timestamp = "0000-00-00T00:00:00Z";
 
 	"""
 	The schema type.

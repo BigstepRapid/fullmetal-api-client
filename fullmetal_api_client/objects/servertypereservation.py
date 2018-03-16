@@ -5,12 +5,14 @@ class ServerTypeReservation(object):
 	Represents a reservation created for a specific server type.
 	"""
 
-	def __init__(self):
-		pass;
+	def __init__(self, user_id, server_type_id, datacenter_name):
+		self.user_id = user_id;
+		self.server_type_id = server_type_id;
+		self.datacenter_name = datacenter_name;
 
 
 	"""
-	Represents the user ID who has the reservation.
+	The user who owns and pays for the reservation.
 	"""
 	user_id = None;
 
@@ -21,14 +23,15 @@ class ServerTypeReservation(object):
 	resource_reservation_created_timestamp = None;
 
 	"""
-	Number of months in a reservation cycle.
+	Contract period size, which gets renewed automatically if this reservation
+	is recurring.
 	"""
-	resource_reservation_cycle_months = None;
+	resource_reservation_cycle_months = 12;
 
 	"""
-	Number of months in a reservation installment cycle.
+	Billing cycle in months.
 	"""
-	resource_reservation_installment_cycle_months = None;
+	resource_reservation_installment_cycle_months = 1;
 
 	"""
 	Date and time when the reservation expires. Is an ISO 8601 timestamp using

@@ -36,7 +36,7 @@ class HardwareConfiguration(object):
 	instance_array_processor_core_count = None;
 
 	"""
-	The minumim of total GHz of the instance.
+	The minumim of total MHz of the instance.
 	"""
 	instance_array_total_mhz = None;
 

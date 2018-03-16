@@ -1,6 +1,6 @@
 
 """
-* Metal Cloud, API v2.9"""
+* Metal Cloud, API v2.15"""
 
 class ApiException(Exception):
 
@@ -13,6 +13,15 @@ class ApiException(Exception):
 	The API key provided doesn't match the user's API key.
 	"""
 	API_KEY_MISMATCH=272
+
+
+	"""
+	API key not set.
+	@public
+	
+	.
+	"""
+	API_KEY_NOT_FOUND=322
 
 
 	"""
@@ -116,12 +125,12 @@ class ApiException(Exception):
 
 
 	"""
-	Datacenter name invalid.
+	Datacenter not found.
 	@public
 	
-	This error is thrown when a provided datacenter name is invalid. API calls that receive this error should obtain a list of active datacenters and choose one of the available options.
+	.
 	"""
-	DATACENTER_NAME_INVALID=269
+	DATACENTER_NOT_FOUND=269
 
 
 	"""
@@ -146,7 +155,7 @@ class ApiException(Exception):
 	DNS label reserved.
 	@public
 	
-	When creating or editing an Infrastructure element a custom label can be provided for ease of use. The label of a product cannot be one of these reserved keywords: "clusters","drive-arrays","drives","infrastructures","instance-arrays","instances","ips","networks","data-lakes","shared-drives","snapshots","drive-snapshots","subnets","volume-templates", or "if0" to "if100". API calls that receive this error should change the initial label and attempt the operation again.
+	When creating or editing an Infrastructure element a custom label can be provided for ease of use. The label of a product cannot be one of these reserved keywords: "snapshots", "drive-snapshots", "volume-templates", "drive-templates", "shared-drive-templates", "instance-licenses", "licenses", "license-contracts", "license-instalments", "infrastructures", "clusters", "instance-arrays", "instance-array-interfaces", "instances", "instance-interfaces", "instance-licenses", "drive-arrays", "drives", "networks", "subnets", "ips", "shared-drives", "data-lakes", "container-platforms", "container-clusters", "container-arrays", "container-array-interfaces", "containers", "container-interfaces", "drive-arrays", "drives", or "if0" to "if100". API calls that receive this error should change the initial label and attempt the operation again.
 	"""
 	DNS_LABEL_RESERVED=243
 
@@ -930,6 +939,15 @@ class ApiException(Exception):
 	Thrown when a certain feature or capability is not implemented yet, is reserved or is planned.
 	"""
 	NOT_IMPLEMENTED=3
+
+
+	"""
+	Nothing to update.
+	@public
+	
+	Generic error code for when an update does not produce any results.
+	"""
+	NOTHING_TO_UPDATE=324
 
 
 	"""
@@ -1823,6 +1841,15 @@ class ApiException(Exception):
 
 
 	"""
+	Volume template is deprecated and cannot be provisioned.
+	@public
+	
+	Volume template is deprecated and cannot be provisioned.
+	"""
+	VOLUME_TEMPLATE_DEPRECATED=323
+
+
+	"""
 	VPLS instance not found.
 	@private
 	
@@ -1910,6 +1937,7 @@ class ApiException(Exception):
 	"""
 	arrPublicErrorIDs=[
 		API_KEY_MISMATCH,
+		API_KEY_NOT_FOUND,
 		AUTHENTICATOR_OTP_REJECTED,
 		CLUSTER_INSTANCE_ARRAY_HAS_NO_WAN_INTERFACE,
 		CLUSTER_MIXING_NOT_ALLOWED,
@@ -1919,7 +1947,7 @@ class ApiException(Exception):
 		CONTAINER_PLATFORM_NOT_ENOUGH_RESOURCES,
 		CONTAINER_PLATFORM_NOT_ENOUGH_SPACE_FOR_PERSISTENT_DIRECTORIES,
 		DATA_LOSS_NOT_CONFIRMED,
-		DATACENTER_NAME_INVALID,
+		DATACENTER_NOT_FOUND,
 		DISK_TYPE_INVALID,
 		DNS_LABEL_RESERVED,
 		DOMAIN_LABEL_ALREADY_IN_USE,
@@ -1986,6 +2014,7 @@ class ApiException(Exception):
 		NOT_AUTHENTICATED,
 		NOT_AUTHORIZED,
 		NOT_IMPLEMENTED,
+		NOTHING_TO_UPDATE,
 		OBJECT_IS_INVALID,
 		PARAM_TYPE_MISMATCH,
 		PARAM_VALUE_INVALID,
@@ -2049,6 +2078,7 @@ class ApiException(Exception):
 		USER_SSH_KEY_NOT_FOUND,
 		USER_SSH_KEYS_MAXIMUM_COUNT_EXCEEDED,
 		USER_SUSPENDED,
-		USER_TEST_CREDENTIALS_EMAIL_MISMATCH	]
+		USER_TEST_CREDENTIALS_EMAIL_MISMATCH,
+		VOLUME_TEMPLATE_DEPRECATED	]
 
 	

@@ -15,10 +15,22 @@ class InfrastructureDeployOverview(object):
 	unusedServerTypeReservations = [];
 
 	"""
+	Licenses which are created, reassigned or unused.
+	"""
+	licenses = [];
+
+	"""
 	Infrastructure elements such as <a:schema>SharedDrive</a:schema> or
 	<a:schema>Drive</a:schema> which will be shrinked, stopped or deleted.
 	"""
 	dataLoss = [];
+
+	"""
+	Infrastructure elements such as <a:schema>InstanceArrays</a:schema> or
+	<a:schema>ContainerArrays</a:schema> and their children which will be
+	temporarily powered off or restarted.
+	"""
+	downtime = [];
 
 	"""
 	Infrastructure elements which are swapping, allocating or deallocating

@@ -23,6 +23,11 @@ class AppHortonworksInstance(object):
 	instance_label = None;
 
 	"""
+	The status of the instance.
+	"""
+	instance_service_status = None;
+
+	"""
 	The subdomain of the node
 	"""
 	instance_hostname = None;

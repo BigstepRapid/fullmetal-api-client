@@ -82,3 +82,9 @@ class Network(object):
 	The network suspend status.
 	"""
 	network_suspend_status = None;
+
+	"""
+	This property specify whether the allocation of the private IPS is done
+	automatically or manually.
+	"""
+	network_lan_autoallocate_ips = False;

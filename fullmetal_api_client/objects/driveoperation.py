@@ -71,6 +71,11 @@ class DriveOperation(object):
 	instance_id = None;
 
 	"""
+	The ID of the Drive's associated container.
+	"""
+	container_id = None;
+
+	"""
 	Represents the volume template.
 	"""
 	template_id_origin = None;

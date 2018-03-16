@@ -5,10 +5,11 @@ class User(object):
 	This object's properties describe user account specifications.
 	"""
 
-	def __init__(self, user_id, user_display_name, user_email):
+	def __init__(self, user_id, user_display_name, user_email, user_brand):
 		self.user_id = user_id;
 		self.user_display_name = user_display_name;
 		self.user_email = user_email;
+		self.user_brand = user_brand;
 
 
 	"""
@@ -145,6 +146,22 @@ class User(object):
 	Internal property. Indicates if the user should be ignored in usage reports.
 	"""
 	user_exclude_from_reports = False;
+
+	"""
+	Used to group users based on their brand.
+	"""
+	user_brand = None;
+
+	"""
+	Determines if the user is a brand manager. Direct delegates will be asigned
+	to the same brand.
+	"""
+	user_is_brand_manager = False;
+
+	"""
+	Determines if the user is a datastore publisher.
+	"""
+	user_is_datastore_publisher = False;
 
 	"""
 	The schema type

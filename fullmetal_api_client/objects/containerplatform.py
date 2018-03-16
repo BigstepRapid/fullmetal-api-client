@@ -74,7 +74,7 @@ class ContainerPlatform(object):
 	in the instance_array_firewall_rules property are ignored. The feature only
 	works for drives that are using a supported OS template.
 	"""
-	container_platform_firewall_managed = False;
+	container_platform_firewall_managed = True;
 
 	"""
 	Contains the hardware configuration for this ContainerPlatform.
@@ -102,3 +102,8 @@ class ContainerPlatform(object):
 	each successful edit operation.
 	"""
 	container_platform_change_id = None;
+
+	"""
+	Contains the resource report of the ContainerPlatform.
+	"""
+	container_platform_resource_report = None;

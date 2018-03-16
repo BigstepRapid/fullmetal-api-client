@@ -1,5 +1,5 @@
 """
-* Metal Cloud, API v2.9"""
+* Metal Cloud, API v2.15"""
 class Events(object):
 
 
@@ -23,12 +23,30 @@ class Events(object):
 
 
 	"""
+	Deploy Agent VLAN Configuration finished.
+	Severity: success.
+	
+	Deploy Agent VLAN Configuration finished.
+	"""
+	BSI_AGENT_DEPLOY_CONFIGURATION_FINISHED=384
+
+
+	"""
 	BSI Agent Installed.
 	Severity: success.
 	
 	BSI Agent has been successfully installed on all instances.
 	"""
 	BSI_AGENT_INSTALLED=276
+
+
+	"""
+	Deploy Agent Live.
+	Severity: success.
+	
+	Deploy Agent Live.
+	"""
+	BSI_AGENT_LIVE=294
 
 
 	"""
@@ -464,6 +482,15 @@ class Events(object):
 
 
 	"""
+	Data Lake has promotion.
+	Severity: info.
+	
+	Data Lake has a promotion.
+	"""
+	DATA_LAKE_HAS_PROMOTION=299
+
+
+	"""
 	DataLake started.
 	Severity: info.
 	
@@ -545,6 +572,15 @@ class Events(object):
 
 
 	"""
+	Drive attached to Container.
+	Severity: info.
+	
+	A Drive has been successfully attached to a Container.
+	"""
+	DRIVE_ATTACHED_CONTAINER=328
+
+
+	"""
 	Drive attached to Instance.
 	Severity: info.
 	
@@ -578,6 +614,15 @@ class Events(object):
 	Deploy completed for Drive operation.
 	"""
 	DRIVE_DEPLOYED=32
+
+
+	"""
+	Drive detached from Container.
+	Severity: info.
+	
+	A Drive has been successfully detached from a Container.
+	"""
+	DRIVE_DETACHED_CONTAINER=329
 
 
 	"""
@@ -671,6 +716,15 @@ class Events(object):
 
 
 	"""
+	Infrastructure deploy blocker triggered.
+	Severity: warning.
+	
+	An infrastructure deploy blocker was triggered and it blocked the deployment of the infrastructure.
+	"""
+	INFRASTRUCTURE_DEPLOY_BLOCKER_TRIGGERED=323
+
+
+	"""
 	Infrastructure deploy started.
 	Severity: info.
 	
@@ -713,6 +767,33 @@ class Events(object):
 	The operation was performed in design mode. A deploy is required in order for the changes to take effect.
 	"""
 	INFRASTRUCTURE_EDITED=159
+
+
+	"""
+	Infrastructure experimental priority set.
+	Severity: info.
+	
+	The experimental priority of the infrastructure is set.
+	"""
+	INFRASTRUCTURE_EXPERIMENTAL_PRIORITY_SET=296
+
+
+	"""
+	Infrastructure instances info.
+	Severity: info.
+	
+	Internal info for all instances of the Infrastructure was returned.
+	"""
+	INFRASTRUCTURE_INSTANCES_INFO=297
+
+
+	"""
+	Infrastructure public design member is set.
+	Severity: info.
+	
+	The infrastructure was made a member of public designs. Public designs members are locked by default.
+	"""
+	INFRASTRUCTURE_PUBLIC_DESIGNS_MEMBER_SET=295
 
 
 	"""
@@ -1112,12 +1193,84 @@ class Events(object):
 
 
 	"""
+	Resource reservation created.
+	Severity: info.
+	
+	A new resource reservation was created.
+	"""
+	RESOURCE_RESERVATION_CREATED=331
+
+
+	"""
+	Resource reservation deleted.
+	Severity: info.
+	
+	The resource reservation was deleted.
+	"""
+	RESOURCE_RESERVATION_DELETED=330
+
+
+	"""
+	Resource reservation edited.
+	Severity: info.
+	
+	A resource reservation was edited.
+	"""
+	RESOURCE_RESERVATION_EDITED=332
+
+
+	"""
+	Server type reservation cancelled.
+	Severity: info.
+	
+	.
+	"""
+	SERVE=364
+
+
+	"""
 	Server hot swap.
 	Severity: important.
 	
 	A server was hot swapped.
 	"""
 	SERVER_SWAPPED=151
+
+
+	"""
+	Server type reservation cancelled.
+	Severity: info.
+	
+	A server type reservation has been cancelled.
+	"""
+	SERVER_TYPE_RESERVATION_CANCELLED=365
+
+
+	"""
+	Server type reservation ownership changed.
+	Severity: info.
+	
+	The ownership of a server type reservation has been changed.
+	"""
+	SERVER_TYPE_RESERVATION_OWNERSHIP_CHANGED=367
+
+
+	"""
+	Server type reservation reactivated.
+	Severity: info.
+	
+	A server type reservation has been reactivated.
+	"""
+	SERVER_TYPE_RESERVATION_REACTIVATED=366
+
+
+	"""
+	A SharedDrive was connected to a ContainerArray.
+	Severity: info.
+	
+	A SharedDrive was connected to a ContainerArray.
+	"""
+	SHARED_DRIVE_CONNECTED_TO_CONTAINER_ARRAY=361
 
 
 	"""
@@ -1157,6 +1310,15 @@ class Events(object):
 
 
 	"""
+	A SharedDrive was disconnected from a ContainerArray.
+	Severity: info.
+	
+	A SharedDrive was disconnected from a ContainerArray.
+	"""
+	SHARED_DRIVE_DISCONNECTED_FROM_CONTAINER_ARRAY=362
+
+
+	"""
 	A SharedDrive was disconnected from an InstanceArray.
 	Severity: info.
 	
@@ -1193,12 +1355,30 @@ class Events(object):
 
 
 	"""
+	A SharedDrive will be connected to a ContainerArray.
+	Severity: info.
+	
+	The SharedDrive will be connected to a ContainerArray.
+	"""
+	SHARED_DRIVE_WILL_BE_CONNECTED_TO_CONTAINER_ARRAY=359
+
+
+	"""
 	A SharedDrive will be connected to an InstanceArray.
 	Severity: info.
 	
 	The SharedDrive will be connected to an InstanceArray.
 	"""
 	SHARED_DRIVE_WILL_BE_CONNECTED_TO_INSTANCE_ARRAY=178
+
+
+	"""
+	A SharedDrive will be disconnected from a ContainerArray.
+	Severity: info.
+	
+	A SharedDrive will be disconnected from a ContainerArray.
+	"""
+	SHARED_DRIVE_WILL_BE_DISCONNECTED_FROM_CONTAINER_ARRAY=360
 
 
 	"""
@@ -1226,6 +1406,51 @@ class Events(object):
 	A snapshot was deleted.
 	"""
 	SNAPSHOT_DELETED=184
+
+
+	"""
+	Storage pool created.
+	Severity: info.
+	
+	A new storage pool was created.
+	"""
+	STORAGE_POOL_CREATED=333
+
+
+	"""
+	Storage pool deleted.
+	Severity: info.
+	
+	A storage pool was deleted.
+	"""
+	STORAGE_POOL_DELETED=334
+
+
+	"""
+	Storage pool experimental set.
+	Severity: info.
+	
+	The storage_pool_is_experimental was updated.
+	"""
+	STORAGE_POOL_EXPERIMENTAL_SET=335
+
+
+	"""
+	Storage Pool IQN Cleaned.
+	Severity: info.
+	
+	The iscsi initiators that are no longer used in storage was deleted.
+	"""
+	STORAGE_POOL_IQN_CLEANED=336
+
+
+	"""
+	Storage Pool Maintenance Set.
+	Severity: info.
+	
+	The flag storage_pool_in_maintenance was set.
+	"""
+	STORAGE_POOL_MAINTENANCE_SET=337
 
 
 	"""
@@ -1283,6 +1508,42 @@ class Events(object):
 
 
 	"""
+	OOB subnet created.
+	Severity: info.
+	
+	An OOB subnet has been successfully created.
+	"""
+	SUBNET_OOB_CREATED=379
+
+
+	"""
+	OOB subnet deleted.
+	Severity: info.
+	
+	An OOB subnet has been successfully deleted.
+	"""
+	SUBNET_OOB_DELETED=380
+
+
+	"""
+	Subnet pool created.
+	Severity: info.
+	
+	A subnet pool has been successfully created.
+	"""
+	SUBNET_POOL_CREATED=377
+
+
+	"""
+	Subnet pool deleted.
+	Severity: info.
+	
+	A subnet pool has been successfully deleted.
+	"""
+	SUBNET_POOL_DELETED=378
+
+
+	"""
 	Subnet started.
 	Severity: info.
 	
@@ -1298,6 +1559,24 @@ class Events(object):
 	The operation was performed in design mode. A deploy is required in order for hardware resources to be deprovisioned.
 	"""
 	SUBNET_STOPPED=100
+
+
+	"""
+	Switch device network allocated primary subnet.
+	Severity: info.
+	
+	Primary WAN IPv4 subnet was allocated for a network from the infrastructure switches.
+	"""
+	SWITCH_DEVICE_NETWORK_ALLOCATED_PRIMARY_SUBNET=338
+
+
+	"""
+	User access level set.
+	Severity: info.
+	
+	The access level for a user has been changed.
+	"""
+	USER_ACCESS_LEVEL_SET=368
 
 
 	"""
@@ -1370,6 +1649,24 @@ class Events(object):
 	The user's password has been updated.
 	"""
 	USER_PASSWORD_CHANGED=111
+
+
+	"""
+	Promotion added to user.
+	Severity: info.
+	
+	A promotion has been added to the user.
+	"""
+	USER_PROMOTION_ADD=318
+
+
+	"""
+	Promotion removed from user.
+	Severity: info.
+	
+	A promotion has been removed from the user.
+	"""
+	USER_REMOVE_PROMOTION=319
 
 
 	"""

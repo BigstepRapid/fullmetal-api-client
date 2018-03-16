@@ -2,19 +2,18 @@ import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from BSI.BSI import BSI
-from JSONRPC.Plugins.Client.SignatureAdd import SignatureAdd
-from JSONRPC.Plugins.Client.DebugLogger import DebugLogger
-from BSI.BSIFilter import BSIFilter
+from fullmetal_api_client.clients.bsi import BSI
+from jsonrpc2_base.plugins.client.signature_add import SignatureAdd
+from jsonrpc2_base.plugins.client.debug_logger import DebugLogger
 
 class BSIClient(object):
     """
     """
     @staticmethod
     def init():
-        strAPIKey = "00:pl34s3c0pyth34p1k3yfr0mth3bs14dm1n1nt3rf4c3" # the API key can be found in the interface myBigstep > Metal Cloud > API
+        strAPIKey = "14733:QlOyhepEMIZDRIpksscvY9WplxxZBelsz90Ropvb8vPZeekGGxbFG841FC1hQmJ"
         dictParams = {
-            "strJSONRPCRouterURL": "https://fullmetal.bigstep.com/api"
+            "strJSONRPCRouterURL": "https://bsiintegration.bigstepcloud.com/api/"
         }
 
         """
@@ -24,8 +23,7 @@ class BSIClient(object):
             dictParams,
             [
                 SignatureAdd(strAPIKey, {}),
-                DebugLogger(True, "DebugLogger.log"),
-                BSIFilter()
+                DebugLogger(True, "DebugLogger.log")
             ]
         )
 

@@ -11,6 +11,31 @@ class ContainerArray(object):
 
 
 	"""
+	The ID of the ContainerArray which can be used instead of the
+	<code>container_array_label</code> or <code>container_array_subdomain</code>
+	when calling the API functions. It is automatically generated and cannot be
+	edited.
+	"""
+	container_array_id = None;
+
+	"""
+	This property helps ensure that edit operations don’t overwrite other,
+	more recent changes made to the same object. It gets updated automatically
+	after each successful edit operation.
+	"""
+	container_array_change_id = None;
+
+	"""
+	The ContainerArray is a child of a ContainerCluster.
+	"""
+	container_cluster_id = None;
+
+	"""
+	Represents the infrastructure ID to which the ContainerArray belongs.
+	"""
+	infrastructure_id = None;
+
+	"""
 	The ContainerArray's unique label is used to create the
 	<code>container_array_subdomain</code>. It is editable and can be used to
 	call API functions.
@@ -24,32 +49,18 @@ class ContainerArray(object):
 	container_array_subdomain = None;
 
 	"""
-	The ID of the ContainerArray which can be used instead of the
-	<code>container_array_label</code> or <code>container_array_subdomain</code>
-	when calling the API functions. It is automatically generated and cannot be
-	edited.
+	Automatically created based on <code>container_array_id</code>. It is a
+	unique reference to the ContainerArray object to be used within the
+	ContainerPlatform network.
 	"""
-	container_array_id = None;
+	container_array_subdomain_internal = None;
 
 	"""
-	The number of containers to be created on the ContainerArray.
+	Automatically created based on <code>container_array_id</code>. It is a
+	unique reference to the load balancer of the ContainerArray object to be
+	used within the ContainerPlatform network.
 	"""
-	container_array_container_count = 1;
-
-	"""
-	The minimum RAM capacity of each container.
-	"""
-	container_array_ram_mbytes = 1024;
-
-	"""
-	The minimum cores of a CPU.
-	"""
-	container_array_processor_core_count = 1;
-
-	"""
-	Represents the infrastructure ID to which the ContainerArray belongs.
-	"""
-	infrastructure_id = None;
+	container_array_load_balancer_subdomain_internal = None;
 
 	"""
 	The status of the ContainerArray.
@@ -57,84 +68,96 @@ class ContainerArray(object):
 	container_array_service_status = None;
 
 	"""
+	"""
+	container_cluster_role_group = "none";
+
+	"""
 	The operation type, operation status and modified ContainerArray object.
 	"""
 	container_array_operation = None;
 
 	"""
-	All <a:schema>ContainerArrayInterface</a:schema> objects. There are 2
-	interfaces for ContainerArray, with indexes 0 and 1.
+	All <a:schema>ContainerArrayInterface</a:schema> objects.
 	"""
 	container_array_interfaces = [];
 
 	"""
-	The ContainerArray is a child of a ContainerCluster.
+	The resource requirements in terms of RAM for a Container of the
+	ContainerArray.
 	"""
-	container_cluster_id = None;
+	container_array_ram_mbytes = 1024;
 
 	"""
-	The application image on Docker server that will be installed on the
-	Container.
+	The resource requirements in terms of CPU cores for a Container of the
+	ContainerArray.
+	"""
+	container_array_processor_core_count = 1;
+
+	"""
+	The number of Containers of the ContainerArray.
+	"""
+	container_array_container_count = 1;
+
+	"""
+	The Docker image of the ContainerArray.
 	"""
 	container_array_application_image = "bigstepinc/hello-world";
 
 	"""
-	The command that is executed when the Containers are deployed.
+	Container entrypoint command override for the ContainerArray.
 	"""
-	container_entrypoint_command_override = None;
+	container_array_entrypoint_command_override = [];
 
 	"""
-	An array of strings that represents an alternative mode of specifying the
-	command to run.
+	Container entrypoint arguments for the ContainerArray.
 	"""
-	container_entrypoint_args = [];
+	container_array_entrypoint_args = [];
 
 	"""
-	A list of services upon which this application depends.
+	The <a:schema>ContainerArrayEnvironmentVariable</a:schema> objects of the
+	ContainerArray.
 	"""
-	container_dependencies = [];
+	container_array_environment_variables = [];
 
 	"""
-	All <a:schema>ContainerURI</a:schema> objects defined for the ContainerArray
-	application.
+	The <a:schema>ContainerArrayPortMapping</a:schema> objects of the
+	ContainerArray.
 	"""
-	container_uris = [];
+	container_array_port_mappings = [];
 
 	"""
-	A list of parameters received in the key/value format, used to configure the
-	docker image.
+	<a:schema>ContainerArrayConfigMap</a:schema> object.
 	"""
-	container_parameters = [];
+	container_array_config_map = None;
 
 	"""
-	All <a:schema>ContainerEnvironmentVariable</a:schema> objects defined for
-	the ContainerArray application.
+	The <a:schema>ContainerArraySecret</a:schema> objects of the ContainerArray.
 	"""
-	container_environment_variables = [];
+	container_array_secrets = [];
 
 	"""
-	All <a:schema>ContainerVolume</a:schema> objects defined for the
-	ContainerArray application.
+	The <a:schema>ContainerArrayVolatileVolume</a:schema> objects of the
+	ContainerArray.
 	"""
-	container_volumes = [];
+	container_array_volatile_volumes = [];
 
 	"""
-	All <a:schema>ContainerVolume</a:schema> objects defined for the
-	ContainerArray application and describe persistent volumes.
+	The <a:schema>ContainerArrayPersistentVolume</a:schema> objects of the
+	ContainerArray.
 	"""
-	container_persistent_volumes = [];
+	container_array_persistent_volumes = [];
 
 	"""
-	All <a:schema>ContainerHealthcheck</a:schema> objects defined for the
-	ContainerArray application.
+	<a:schema>ContainerArrayReadinessCheck</a:schema> object that asseses the
+	readiness of the ContainerArray Containers.
 	"""
-	container_healthchecks = [];
+	container_array_readiness_check = None;
 
 	"""
-	All <a:schema>ContainerPortMapping</a:schema> objects defined for the
-	ContainerArray application.
+	<a:schema>ContainerArrayLivenessCheck</a:schema> object that asseses the
+	liveness of the ContainerArray Containers.
 	"""
-	container_port_mappings = [];
+	container_array_liveness_check = None;
 
 	"""
 	Reserved for GUI users.
@@ -157,14 +180,3 @@ class ContainerArray(object):
 	The schema type.
 	"""
 	type = None;
-
-	"""
-	This property helps ensure that edit operations don’t overwrite other,
-	more recent changes made to the same object. It gets updated automatically
-	after each successful edit operation.
-	"""
-	container_array_change_id = None;
-
-	"""
-	"""
-	container_cluster_role_group = "none";

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-class ActionHTTPGet(object):
+class ContainerArrayActionHTTPGet(object):
 	"""
-	ContainerArray healthcheck based on HTTP Get requests.
+	ContainerArray action that uses HTTP Get requests to asses the readiness or
+	liveness of the Containers.
 	"""
 
 	def __init__(self, action_port):
@@ -15,19 +16,19 @@ class ActionHTTPGet(object):
 	action_path = "/";
 
 	"""
-	Port to access on the container.
+	Port to access on the Container.
 	"""
 	action_port = None;
 
 	"""
-	Host name to connect to. Defaults to the container IP.
+	Host name to connect to. Defaults to the Container IP.
 	"""
 	action_host = None;
 
 	"""
 	Scheme to use for connecting to the host.
 	"""
-	action_scheme = "http";
+	action_scheme = "HTTP";
 
 	"""
 	The schema type.

@@ -8,7 +8,8 @@ class ContainerArrayInterfaceOperation(object):
 	unique to each operation object.
 	"""
 
-	def __init__(self, container_array_interface_change_id):
+	def __init__(self, container_array_interface_id, container_array_interface_change_id):
+		self.container_array_interface_id = container_array_interface_id;
 		self.container_array_interface_change_id = container_array_interface_change_id;
 
 

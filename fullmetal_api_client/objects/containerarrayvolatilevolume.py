@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class VolatileVolume(object):
+class ContainerArrayVolatileVolume(object):
 	"""
 	ContainerArray volatile storage resource.
 	"""

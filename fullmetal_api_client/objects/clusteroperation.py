@@ -50,6 +50,11 @@ class ClusterOperation(object):
 	type = None;
 
 	"""
+	Cluster services as assigned to each instance
+	"""
+	cluster_service_assignment = {};
+
+	"""
 	This property helps ensure that edit operations don’t overwrite other,
 	more recent changes made to the same object. It gets updated automatically
 	after each successful edit operation.

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class Secret(object):
+class ContainerArraySecret(object):
 	"""
 	ContainerArray sensitive data to be stored encrypted and made available to
 	the containers in plaintext.

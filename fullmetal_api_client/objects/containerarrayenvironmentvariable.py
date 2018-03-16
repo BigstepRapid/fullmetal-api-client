@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class EnvironmentVariable(object):
+class ContainerArrayEnvironmentVariable(object):
 	"""
 	ContainerArray environment variable.
 	"""

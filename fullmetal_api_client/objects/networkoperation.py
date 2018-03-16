@@ -69,3 +69,9 @@ class NetworkOperation(object):
 	after each successful edit operation.
 	"""
 	network_change_id = None;
+
+	"""
+	This property specify whether the allocation of the private IPS is done
+	automatically or manually.
+	"""
+	network_lan_autoallocate_ips = False;

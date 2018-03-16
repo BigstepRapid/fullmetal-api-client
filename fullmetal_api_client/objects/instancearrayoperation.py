@@ -8,10 +8,11 @@ class InstanceArrayOperation(object):
 	operation object.
 	"""
 
-	def __init__(self, instance_array_label, instance_array_instance_count, instance_array_ipv4_subnet_create_auto, instance_array_ip_allocate_auto, instance_array_ram_gbytes, instance_array_processor_count, instance_array_processor_core_mhz, instance_array_processor_core_count, drive_array_id_boot, instance_array_change_id, instance_array_firewall_managed, instance_array_firewall_rules):
+	def __init__(self, instance_array_label, instance_array_instance_count, instance_array_ipv4_subnet_create_auto, instance_array_virtual_interfaces_enabled, instance_array_ip_allocate_auto, instance_array_ram_gbytes, instance_array_processor_count, instance_array_processor_core_mhz, instance_array_processor_core_count, drive_array_id_boot, instance_array_change_id, instance_array_firewall_managed, instance_array_firewall_rules):
 		self.instance_array_label = instance_array_label;
 		self.instance_array_instance_count = instance_array_instance_count;
 		self.instance_array_ipv4_subnet_create_auto = instance_array_ipv4_subnet_create_auto;
+		self.instance_array_virtual_interfaces_enabled = instance_array_virtual_interfaces_enabled;
 		self.instance_array_ip_allocate_auto = instance_array_ip_allocate_auto;
 		self.instance_array_ram_gbytes = instance_array_ram_gbytes;
 		self.instance_array_processor_count = instance_array_processor_count;
@@ -69,7 +70,7 @@ class InstanceArrayOperation(object):
 	"""
 	Enable virtual interfaces
 	"""
-	instance_array_virtual_interfaces_enabled = False;
+	instance_array_virtual_interfaces_enabled = None;
 
 	"""
 	Automatically allocate IP addresses to child Instance's InstanceInterface

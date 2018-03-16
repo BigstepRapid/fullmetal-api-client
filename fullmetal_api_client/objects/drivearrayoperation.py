@@ -8,7 +8,7 @@ class DriveArrayOperation(object):
 	operation object.
 	"""
 
-	def __init__(self, drive_array_label, volume_template_id, drive_array_storage_type, drive_array_count, drive_size_mbytes_default, drive_array_expand_with_instance_array, instance_array_id, drive_array_change_id):
+	def __init__(self, drive_array_label, volume_template_id, drive_array_storage_type, drive_array_count, drive_size_mbytes_default, drive_array_expand_with_instance_array, instance_array_id, container_array_id, drive_array_change_id):
 		self.drive_array_label = drive_array_label;
 		self.volume_template_id = volume_template_id;
 		self.drive_array_storage_type = drive_array_storage_type;
@@ -16,6 +16,7 @@ class DriveArrayOperation(object):
 		self.drive_size_mbytes_default = drive_size_mbytes_default;
 		self.drive_array_expand_with_instance_array = drive_array_expand_with_instance_array;
 		self.instance_array_id = instance_array_id;
+		self.container_array_id = container_array_id;
 		self.drive_array_change_id = drive_array_change_id;
 
 
@@ -92,6 +93,11 @@ class DriveArrayOperation(object):
 	instance_array_id = None;
 
 	"""
+	The ContainerArray ID to which the Drive array belongs.
+	"""
+	container_array_id = None;
+
+	"""
 	ISO 8601 timestamp which holds the date and time when the Drive array was
 	edited. Example format: 2013-11-29T13:00:01Z.
 	"""
@@ -101,6 +107,11 @@ class DriveArrayOperation(object):
 	Reserved for GUI users.
 	"""
 	drive_array_gui_settings_json = None;
+
+	"""
+	License utilization type for the license.
+	"""
+	license_utilization_type = "subscription";
 
 	"""
 	The schema type.

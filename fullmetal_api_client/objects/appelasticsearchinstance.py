@@ -13,9 +13,9 @@ class AppElasticsearchInstance(object):
 
 
 	"""
-	The HQ plugin interface URL.
+	The user interface URL.
 	"""
-	hq_url = None;
+	ui_url = None;
 
 	"""
 	Percentage of time CPU is running in system mode and user mode. Being a

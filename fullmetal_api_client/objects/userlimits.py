@@ -6,9 +6,10 @@ class UserLimits(object):
 	Infrastructures and Infrastructure elements that a user can create.
 	"""
 
-	def __init__(self, infrastructure_active_max_count, server_type_reservation_max_quantity, infrastructure_inactive_max_count, infrastructure_deleted_max_count, infrastructure_drive_array_max_count, infrastructure_instance_array_max_count, infrastructure_container_platform_max_count, infrastructure_volume_template_experimental_allowed, infrastructure_container_cluster_zookeeper_allowed, infrastructure_container_cluster_postgresql_allowed, infrastructure_container_cluster_sparksql_allowed, infrastructure_container_cluster_kafka_allowed, infrastructure_container_array_max_count, infrastructure_data_lake_max_count, infrastructure_data_lake_enabled, infrastructure_wan_max_count, infrastructure_lan_max_count, infrastructure_san_max_count, infrastructure_spark_array_allowed, infrastructure_container_cluster_max_count, infrastructure_cluster_max_count, wan_subnet_ipv4_max_count, wan_subnet_ipv6_max_count, instance_array_instances_min_count, instance_array_instances_max_count, instance_array_drive_arrays_min_count, instance_array_drive_arrays_max_count, drive_array_drives_min_count, drive_array_drives_max_count, drive_max_size_mbytes, drive_min_size_mbytes, shared_drive_max_size_mbytes, shared_drive_min_size_mbytes, infrastructure_shared_drive_max_count, storage_types, user_resource_servers_max_count, user_resource_iscsi_storage_space_max_gbytes, owner_is_billable, user_ssh_keys_count_max):
+	def __init__(self, infrastructure_active_max_count, server_type_reservation_max_quantity, server_type_reservation_max_count, infrastructure_inactive_max_count, infrastructure_deleted_max_count, infrastructure_drive_array_max_count, infrastructure_instance_array_max_count, infrastructure_container_platform_max_count, infrastructure_volume_template_experimental_allowed, infrastructure_container_cluster_zookeeper_allowed, infrastructure_container_cluster_zoomdata_allowed, infrastructure_cluster_mysql_allowed, infrastructure_container_cluster_postgresql_allowed, infrastructure_container_cluster_spark_array_allowed, infrastructure_container_cluster_sparksql_allowed, infrastructure_container_cluster_kafka_allowed, infrastructure_container_cluster_streamsets_allowed, container_platform_container_array_max_count, infrastructure_data_lake_max_count, infrastructure_data_lake_enabled, infrastructure_wan_max_count, infrastructure_lan_max_count, infrastructure_san_max_count, infrastructure_container_cluster_max_count, infrastructure_cluster_max_count, wan_subnet_ipv4_max_count, wan_subnet_ipv6_max_count, instance_array_instances_min_count, instance_array_instances_max_count, instance_array_drive_arrays_min_count, instance_array_drive_arrays_max_count, container_array_drive_arrays_min_count, container_array_drive_arrays_max_count, container_array_containers_min_count, container_array_containers_max_count, container_array_secrets_max_count, drive_array_drives_min_count, drive_array_drives_max_count, drive_max_size_mbytes, drive_min_size_mbytes, shared_drive_max_size_mbytes, shared_drive_min_size_mbytes, infrastructure_shared_drive_max_count, storage_types, user_resource_servers_max_count, user_resource_iscsi_storage_space_max_gbytes, owner_is_billable, user_ssh_keys_count_max):
 		self.infrastructure_active_max_count = infrastructure_active_max_count;
 		self.server_type_reservation_max_quantity = server_type_reservation_max_quantity;
+		self.server_type_reservation_max_count = server_type_reservation_max_count;
 		self.infrastructure_inactive_max_count = infrastructure_inactive_max_count;
 		self.infrastructure_deleted_max_count = infrastructure_deleted_max_count;
 		self.infrastructure_drive_array_max_count = infrastructure_drive_array_max_count;
@@ -16,16 +17,19 @@ class UserLimits(object):
 		self.infrastructure_container_platform_max_count = infrastructure_container_platform_max_count;
 		self.infrastructure_volume_template_experimental_allowed = infrastructure_volume_template_experimental_allowed;
 		self.infrastructure_container_cluster_zookeeper_allowed = infrastructure_container_cluster_zookeeper_allowed;
+		self.infrastructure_container_cluster_zoomdata_allowed = infrastructure_container_cluster_zoomdata_allowed;
+		self.infrastructure_cluster_mysql_allowed = infrastructure_cluster_mysql_allowed;
 		self.infrastructure_container_cluster_postgresql_allowed = infrastructure_container_cluster_postgresql_allowed;
+		self.infrastructure_container_cluster_spark_array_allowed = infrastructure_container_cluster_spark_array_allowed;
 		self.infrastructure_container_cluster_sparksql_allowed = infrastructure_container_cluster_sparksql_allowed;
 		self.infrastructure_container_cluster_kafka_allowed = infrastructure_container_cluster_kafka_allowed;
-		self.infrastructure_container_array_max_count = infrastructure_container_array_max_count;
+		self.infrastructure_container_cluster_streamsets_allowed = infrastructure_container_cluster_streamsets_allowed;
+		self.container_platform_container_array_max_count = container_platform_container_array_max_count;
 		self.infrastructure_data_lake_max_count = infrastructure_data_lake_max_count;
 		self.infrastructure_data_lake_enabled = infrastructure_data_lake_enabled;
 		self.infrastructure_wan_max_count = infrastructure_wan_max_count;
 		self.infrastructure_lan_max_count = infrastructure_lan_max_count;
 		self.infrastructure_san_max_count = infrastructure_san_max_count;
-		self.infrastructure_spark_array_allowed = infrastructure_spark_array_allowed;
 		self.infrastructure_container_cluster_max_count = infrastructure_container_cluster_max_count;
 		self.infrastructure_cluster_max_count = infrastructure_cluster_max_count;
 		self.wan_subnet_ipv4_max_count = wan_subnet_ipv4_max_count;
@@ -34,6 +38,11 @@ class UserLimits(object):
 		self.instance_array_instances_max_count = instance_array_instances_max_count;
 		self.instance_array_drive_arrays_min_count = instance_array_drive_arrays_min_count;
 		self.instance_array_drive_arrays_max_count = instance_array_drive_arrays_max_count;
+		self.container_array_drive_arrays_min_count = container_array_drive_arrays_min_count;
+		self.container_array_drive_arrays_max_count = container_array_drive_arrays_max_count;
+		self.container_array_containers_min_count = container_array_containers_min_count;
+		self.container_array_containers_max_count = container_array_containers_max_count;
+		self.container_array_secrets_max_count = container_array_secrets_max_count;
 		self.drive_array_drives_min_count = drive_array_drives_min_count;
 		self.drive_array_drives_max_count = drive_array_drives_max_count;
 		self.drive_max_size_mbytes = drive_max_size_mbytes;
@@ -54,9 +63,14 @@ class UserLimits(object):
 	infrastructure_active_max_count = None;
 
 	"""
-	The maximum number of server reservations.
+	The maximum number of server reservations (limit for the quantity param).
 	"""
 	server_type_reservation_max_quantity = None;
+
+	"""
+	The maximum number of server reservations.
+	"""
+	server_type_reservation_max_count = None;
 
 	"""
 	The maximum number of ordered Infrastructures that a user can own.
@@ -99,10 +113,27 @@ class UserLimits(object):
 	infrastructure_container_cluster_zookeeper_allowed = None;
 
 	"""
+	1 if a Zoomdata container cluster is allowed on a infrastructure, 0
+	otherwise
+	"""
+	infrastructure_container_cluster_zoomdata_allowed = None;
+
+	"""
+	1 if a Mysql cluster is allowed on a infrastructure, 0 otherwise
+	"""
+	infrastructure_cluster_mysql_allowed = None;
+
+	"""
 	1 if a PostgreSQL container cluster is allowed on a infrastructure, 0
 	otherwise
 	"""
 	infrastructure_container_cluster_postgresql_allowed = None;
+
+	"""
+	Specifies whether the user (or his delegates) can create SparkArrays on his
+	Infrastructures.
+	"""
+	infrastructure_container_cluster_spark_array_allowed = None;
 
 	"""
 	1 if a SparkSQL container cluster is allowed on a infrastructure, 0
@@ -116,10 +147,16 @@ class UserLimits(object):
 	infrastructure_container_cluster_kafka_allowed = None;
 
 	"""
-	The maximum number of Container Arrays that can be created on a single
-	Infrastructure.
+	1 if a StreamSets container cluster is allowed on a infrastructure, 0
+	otherwise
 	"""
-	infrastructure_container_array_max_count = None;
+	infrastructure_container_cluster_streamsets_allowed = None;
+
+	"""
+	The maximum number of Container Arrays that can be created on a single
+	ContainerPlatform.
+	"""
+	container_platform_container_array_max_count = None;
 
 	"""
 	The maximum number of Data Lakes that can be created on a single
@@ -150,12 +187,6 @@ class UserLimits(object):
 	Infrastructure.
 	"""
 	infrastructure_san_max_count = None;
-
-	"""
-	Specifies whether the user (or his delegates) can create SparkArrays on his
-	Infrastructures.
-	"""
-	infrastructure_spark_array_allowed = None;
 
 	"""
 	The maximum number of Container Clusters that can be created on a single
@@ -204,6 +235,35 @@ class UserLimits(object):
 	at any given time.
 	"""
 	instance_array_drive_arrays_max_count = None;
+
+	"""
+	The minimum number of Drive Arrays that can be attached to an Instance Array
+	at any given time.
+	"""
+	container_array_drive_arrays_min_count = None;
+
+	"""
+	The maximum number of Drive Arrays that can be attached to an Instance Array
+	at any given time.
+	"""
+	container_array_drive_arrays_max_count = None;
+
+	"""
+	The minimum number of Drive Arrays that can be attached to an Instance Array
+	at any given time.
+	"""
+	container_array_containers_min_count = None;
+
+	"""
+	The maximum number of Drive Arrays that can be attached to an Instance Array
+	at any given time.
+	"""
+	container_array_containers_max_count = None;
+
+	"""
+	The maximum number of Secrets that can asociated with a container array.
+	"""
+	container_array_secrets_max_count = None;
 
 	"""
 	The minimum number of Drives that a Drive Array can have at any given time.

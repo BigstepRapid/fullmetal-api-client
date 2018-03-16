@@ -40,6 +40,11 @@ class Drive(object):
 	instance_id = None;
 
 	"""
+	Represents the associated container's ID.
+	"""
+	container_id = None;
+
+	"""
 	Represents the capacity of the Drive.
 	"""
 	drive_size_mbytes = None;

@@ -2,9 +2,7 @@ import inspect
 import json
 import importlib
 
-
 class Deserializer(object):
-
     @staticmethod
     def deserialize(mxJSON):
         """

@@ -59,6 +59,11 @@ class VolumeTemplate(object):
 	volume_template_repo_url = None;
 
 	"""
+	The deprecation status of the volume template.
+	"""
+	volume_template_deprecation_status = "not_deprecated";
+
+	"""
 	The schema type.
 	"""
 	type = None;

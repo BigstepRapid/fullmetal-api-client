@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class PersistentVolume(object):
+class ContainerArrayPersistentVolume(object):
 	"""
 	ContainerArray persistent storage resource.
 	"""

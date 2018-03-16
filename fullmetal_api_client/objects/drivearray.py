@@ -73,6 +73,11 @@ class DriveArray(object):
 	instance_array_id = None;
 
 	"""
+	The ContainerArray ID to which the Drive array is attached.
+	"""
+	container_array_id = None;
+
+	"""
 	The status of the Drive array.
 	"""
 	drive_array_service_status = None;
@@ -87,6 +92,12 @@ class DriveArray(object):
 	Cluster.
 	"""
 	cluster_id = None;
+
+	"""
+	If not <code>null</code>, then the InstanceArray is part of the specified
+	ContainerCluster.
+	"""
+	container_cluster_id = None;
 
 	"""
 	"""
@@ -108,6 +119,11 @@ class DriveArray(object):
 	edited. Example format: 2013-11-29T13:00:01Z.
 	"""
 	drive_array_updated_timestamp = "0000-00-00T00:00:00Z";
+
+	"""
+	License utilization type for the license.
+	"""
+	license_utilization_type = "subscription";
 
 	"""
 	The schema type.

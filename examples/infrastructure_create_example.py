@@ -12,12 +12,12 @@ strUserID = "your_login_email@goes.here"
 
 # select the datacenter where the infrastructure will be created
 dictDatacenters = bsi.datacenters()
-strDatacenter =  dictDatacenters.keys()[0].datacenter_name
-    
+datacenter =  dictDatacenters[next(iter(dictDatacenters))]
+
 # setting up the infrastructure object parameter
 dictInfrastructureCreateParams = {
     "infrastructure_label" : strInfrastructureName,
-    "datacenter_name" : strDatacenter
+    "datacenter_name" : datacenter.datacenter_name
 }
 
 dictInfrastructure = bsi.infrastructure_create(strUserID, dictInfrastructureCreateParams, None)

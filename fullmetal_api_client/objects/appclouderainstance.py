@@ -54,6 +54,11 @@ class AppClouderaInstance(object):
 	instance_label = None;
 
 	"""
+	The status of the instance.
+	"""
+	instance_service_status = None;
+
+	"""
 	The schema type
 	"""
 	type = None;

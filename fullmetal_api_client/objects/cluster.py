@@ -53,6 +53,11 @@ class Cluster(object):
 	cluster_software_version = None;
 
 	"""
+	Cluster services as assigned to each instance
+	"""
+	cluster_service_assignment = {};
+
+	"""
 	Specifies if the cluster will be automatically managed or not.
 	"""
 	cluster_automatic_management = True;

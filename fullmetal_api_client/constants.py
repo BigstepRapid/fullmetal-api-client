@@ -5,7 +5,7 @@ import importlib
 class Constants(object):
 
 	"""
-	* Metal Cloud, API v2.9
+	* Metal Cloud, API v2.15
 	"""
 	
 	
@@ -106,6 +106,14 @@ class Constants(object):
 	
 	
 	"""
+	Percona MySQL cluster.
+	
+	See https://www.percona.com/software/mysql-database/percona-xtradb-cluster for information on this software.
+	"""
+	CLUSTER_TYPE_MYSQL_PERCONA="mysql_percona"
+	
+	
+	"""
 	SaaS cluster of type Splunk.
 	
 	See http://www.splunk.com/ for information on this software.
@@ -187,6 +195,30 @@ class Constants(object):
 	
 	
 	"""
+	ContainerArray execute command action.
+	
+	ContainerArray action that executes a given command.
+	"""
+	CONTAINER_ARRAY_ACTION_EXECUTE_COMMAND="execute_command"
+	
+	
+	"""
+	ContainerArray HTTP get action.
+	
+	ContainerArray action that makes a HTTP get request.
+	"""
+	CONTAINER_ARRAY_ACTION_HTTP_GET="http_get"
+	
+	
+	"""
+	ContainerArray TCP socket action.
+	
+	ContainerArray action that opens a TCP connection to a given port.
+	"""
+	CONTAINER_ARRAY_ACTION_TCP_SOCKET="tcp_socket"
+	
+	
+	"""
 	SAN ContainerArray interface.
 	
 	ContainerArray interface index reserved for SAN networks.
@@ -208,6 +240,14 @@ class Constants(object):
 	
 	"""
 	CONTAINER_ARRAY_INTERFACE_INDEX_2=2
+	
+	
+	"""
+	Elasticsearch container cluster type.
+	
+	
+	"""
+	CONTAINER_CLUSTER_TYPE_ELASTICSEARCH="elasticsearch"
 	
 	
 	"""
@@ -240,6 +280,14 @@ class Constants(object):
 	
 	"""
 	CONTAINER_CLUSTER_TYPE_SPARKSQL="sparksql"
+	
+	
+	"""
+	StreamSets container cluster type.
+	
+	StreamSets container cluster type
+	"""
+	CONTAINER_CLUSTER_TYPE_STREAMSETS="streamsets"
 	
 	
 	"""
@@ -296,6 +344,46 @@ class Constants(object):
 	
 	"""
 	CONTAINER_STATUS_NONE="none"
+	
+	
+	"""
+	Container failed phase.
+	
+	The Container has failed.
+	"""
+	CONTAINER_STATUS_PHASE_FAILED="failed"
+	
+	
+	"""
+	Container pending phase.
+	
+	The Container has been created and awaits scheduling and execution.
+	"""
+	CONTAINER_STATUS_PHASE_PENDING="pending"
+	
+	
+	"""
+	Container running phase.
+	
+	Container is running.
+	"""
+	CONTAINER_STATUS_PHASE_RUNNING="running"
+	
+	
+	"""
+	Container succeeded phase.
+	
+	The Container has been executed successfully.
+	"""
+	CONTAINER_STATUS_PHASE_SUCCEEDED="succeeded"
+	
+	
+	"""
+	Container unknown phase.
+	
+	The Container state phase could not be retrieved due to internal errors.
+	"""
+	CONTAINER_STATUS_PHASE_UNKNOWN="unknown"
 	
 	
 	"""
@@ -547,6 +635,14 @@ class Constants(object):
 	
 	
 	"""
+	Microsoft minimum number of processors for two core license pack.
+	
+	
+	"""
+	LICENSE_MICROSOFT_PROCESSOR_MIN_COUNT=8
+	
+	
+	"""
 	License Type None.
 	
 	
@@ -560,6 +656,38 @@ class Constants(object):
 	
 	"""
 	LICENSE_TYPE_WINDOWS_SERVER="windows_server"
+	
+	
+	"""
+	License type Windows Server Standard.
+	
+	
+	"""
+	LICENSE_TYPE_WINDOWS_SERVER_STANDARD="windows_server_standard"
+	
+	
+	"""
+	Demand license utilization.
+	
+	
+	"""
+	LICENSE_UTILIZATION_TYPE_DEMAND="demand"
+	
+	
+	"""
+	License Utilization Type None.
+	
+	
+	"""
+	LICENSE_UTILIZATION_TYPE_NONE="none"
+	
+	
+	"""
+	Subscribe license utilization.
+	
+	
+	"""
+	LICENSE_UTILIZATION_TYPE_SUBSCRIPTION="subscription"
 	
 	
 	"""
@@ -760,6 +888,14 @@ class Constants(object):
 	
 	"""
 	OPERATION_TYPE_SUSPEND="suspend"
+	
+	
+	"""
+	Prices key for private datacenters default prices.
+	
+	
+	"""
+	PRICES_PRIVATE_DATACENTER_KEY="private-dc-default"
 	
 	
 	"""
@@ -995,6 +1131,22 @@ class Constants(object):
 	
 	
 	"""
+	Shared drive - connection type "connected".
+	
+	
+	"""
+	SHARED_DRIVE_CONNECTED_CONTAINER_ARRAY="connected_container_array"
+	
+	
+	"""
+	Shared drive - connection type "disconnected".
+	
+	
+	"""
+	SHARED_DRIVE_DISCONNECTED_CONTAINER_ARRAY="disconnected_container_array"
+	
+	
+	"""
 	Shared drive connection type "will be connected".
 	
 	When an instance array or a container array is attached to a shared drive, this type of connection will be made.
@@ -1003,11 +1155,27 @@ class Constants(object):
 	
 	
 	"""
+	Shared drive connection type "will be connected".
+	
+	
+	"""
+	SHARED_DRIVE_WILL_BE_CONNECTED_CONTAINER_ARRAY="will_be_connected_container_array"
+	
+	
+	"""
 	Shared drive - connection type "will_be_disconnected".
 	
 	When an instance array / container array is detached from a shared drive (or the shared drive / instance array / container array belonging to the connection is deleted), this type of connection will be made.
 	"""
 	SHARED_DRIVE_WILL_BE_DISCONNECTED="will_be_disconnected"
+	
+	
+	"""
+	Shared drive - connection type "will_be_disconnected".
+	
+	
+	"""
+	SHARED_DRIVE_WILL_BE_DISCONNECTED_CONTAINER_ARRAY="will_be_disconnected_container_array"
 	
 	
 	"""
@@ -1224,6 +1392,30 @@ class Constants(object):
 	
 	"""
 	USER_TYPE_BILLABLE="billable"
+	
+	
+	"""
+	Volume template deprecation status deprecated allow expand.
+	
+	Volume template deprecation status deprecated allow expand
+	"""
+	VOLUME_TEMPLATE_DEPRECATION_STATUS_DEPRECATED_ALLOW_EXPAND="deprecated_allow_expand"
+	
+	
+	"""
+	Volume template deprecation status deprecated deny provision.
+	
+	Volume template deprecation status deprecated deny provision
+	"""
+	VOLUME_TEMPLATE_DEPRECATION_STATUS_DEPRECATED_DENY_PROVISION="deprecated_deny_provision"
+	
+	
+	"""
+	Volume template deprecation status not deprecated.
+	
+	Volume template deprecation status not deprecated
+	"""
+	VOLUME_TEMPLATE_DEPRECATION_STATUS_NOT_DEPRECATED="not_deprecated"
 	
 	
 	"""

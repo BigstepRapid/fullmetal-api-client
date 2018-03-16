@@ -105,3 +105,13 @@ class Infrastructure(object):
 	infrastructure.
 	"""
 	infrastructure_design_is_locked = False;
+
+	"""
+	The subnet pool used on this infrastructure to allocate private IPs
+	"""
+	subnet_pool_lan = None;
+
+	"""
+	Contains the reserved LAN IP ranges on the infrastructure.
+	"""
+	infrastructure_reserved_lan_ip_ranges = [];
