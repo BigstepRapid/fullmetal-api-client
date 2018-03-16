@@ -75,7 +75,7 @@ class Deserializer(object):
                 mxJSON[strKeyJSON] = Deserializer._recursive_decode(mxJSON[strKeyJSON])
 
             if "type" in mxJSON:
-                module = importlib.import_module('metal-cloud-sdk.objects.' + mxJSON["type"].lower())
+                module = importlib.import_module('metal_cloud_sdk.objects.' + mxJSON["type"].lower())
                 return Deserializer._decode(mxJSON, getattr(module, mxJSON["type"]))
 
             return mxJSON
