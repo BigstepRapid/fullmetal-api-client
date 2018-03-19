@@ -11,10 +11,11 @@ bsi = BSIClient.init()
 strClusterLabel = "cluster-label"
 objCluster = bsi.cluster_get(strClusterLabel, False, 20)
 dictClusterOperation = objCluster.cluster_operation
+objClusterApp = bsi.cluster_app(strClusterLabel)
 
 # set the new software version and verify whether it is among the supported versions
 strClusterNewVersion = "5.3.0"
-if strClusterNewVersion in objCluster.cluster_app.cluster_software_available_versions:
+if strClusterNewVersion in objClusterApp.cluster_app.cluster_software_available_versions:
     dictClusterOperation.cluster_software_version = strClusterNewVersion
     strCluster = bsi.cluster_edit(strClusterLabel, dictClusterOperation)
 
