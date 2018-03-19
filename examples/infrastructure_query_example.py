@@ -2,6 +2,7 @@ import sys
 import os.path
 import json
 from initialize_python_client import BSIClient
+from metal_cloud_sdk.constants import Constants
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -63,7 +64,7 @@ bsi.query(
             instance_array_id ASC
         LIMIT 0, 10
     """,
-    bsi.COLLAPSE_ARRAY_SUBROWS
+    Constants.COLLAPSE_ARRAY_SUBROWS
 )
 
 dictInstanceArrayParams = {
@@ -95,5 +96,5 @@ bsi.query(
             instance_array_id ASC
         LIMIT 0, 10
     """,
-    bsi.COLLAPSE_ARRAY_SUBROWS
+    Constants.COLLAPSE_ARRAY_SUBROWS
 )
