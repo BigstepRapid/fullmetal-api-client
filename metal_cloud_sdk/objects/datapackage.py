@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-class DataPackageJson(object):
+class DataPackage(object):
 	"""
-	Datapackage.json files store the metadata of a dataset
+	datapackage.json files store the metadata of a dataset
 	"""
 
-	def __init__(self):
-		pass;
+	def __init__(self, dataset_price, dataset_price_currency):
+		self.dataset_price = dataset_price;
+		self.dataset_price_currency = dataset_price_currency;
 
 
 	"""
