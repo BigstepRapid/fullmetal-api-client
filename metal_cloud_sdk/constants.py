@@ -323,54 +323,6 @@ class Constants(object):
 	
 	
 	"""
-	Container status failed.
-	
-	
-	"""
-	CONTAINER_STATUS_FAILED="failed"
-	
-	
-	"""
-	Container status finished.
-	
-	
-	"""
-	CONTAINER_STATUS_FINISHED="finished"
-	
-	
-	"""
-	Container status killed.
-	
-	
-	"""
-	CONTAINER_STATUS_KILLED="killed"
-	
-	
-	"""
-	No status for Container.
-	
-	
-	"""
-	CONTAINER_STATUS_NONE="none"
-	
-	
-	"""
-	Container status running.
-	
-	Container status "running" is equivalent in meaning to an "active" status set on a product.
-	"""
-	CONTAINER_STATUS_RUNNING="running"
-	
-	
-	"""
-	Container status staged.
-	
-	
-	"""
-	CONTAINER_STATUS_STAGED="staged"
-	
-	
-	"""
 	HDFS DataLake type.
 	
 	
