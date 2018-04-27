@@ -1,5 +1,5 @@
 """
-* Metal Cloud, API v2.15"""
+* Metal Cloud, API v3.0"""
 class Events(object):
 
 
@@ -1226,6 +1226,24 @@ class Events(object):
 	.
 	"""
 	SERVE=364
+
+
+	"""
+	Server OOB IP allow.
+	Severity: info.
+	
+	Allow access to server OOB.
+	"""
+	SERVER_OOB_IP_ALLOW=392
+
+
+	"""
+	Server OOB IP disallow.
+	Severity: info.
+	
+	Disallow access to server OOB.
+	"""
+	SERVER_OOB_IP_DISALLOW=393
 
 
 	"""

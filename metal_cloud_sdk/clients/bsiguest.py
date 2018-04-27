@@ -2335,11 +2335,11 @@ class BSIGuest(Client):
 			objContainer[strKeyContainer] = Deserializer.deserialize(objContainer[strKeyContainer])
 		return objContainer
 
-	def container_logs(self, strContainerID, strTimestampSince = None, nLimitBytes = None):
+	def container_logs(self, strContainerID, strSinceTimestamp = None, nLimitBytes = None):
 
 		arrParams = [
 			strContainerID,
-			strTimestampSince,
+			strSinceTimestamp,
 			nLimitBytes,
 		]
 
