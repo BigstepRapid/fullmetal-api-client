@@ -1,7 +1,7 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-version = '2.15'
+version = '2.15.1'
 name = 'metal-cloud-sdk'
 url = 'https://github.com/bigstepinc/metal-cloud-sdk-python2.x.git'
 
