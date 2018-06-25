@@ -459,6 +459,14 @@ class Constants(object):
 	
 	
 	"""
+	Filesystem navigator driver dataset readme.
+	
+	
+	"""
+	FILESYSTEM_NAVIGATOR_DRIVER_TYPE_DATASET_README="dataset_readme"
+	
+	
+	"""
 	FileSystemNavigator driver of type WebHDFS.
 	
 	
