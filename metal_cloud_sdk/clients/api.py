@@ -2055,7 +2055,7 @@ class API(Client):
 		return self.rpc("infrastructure_overview_children_products", arrParams)
 
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,
@@ -2129,7 +2129,7 @@ class API(Client):
 
 		return Deserializer.deserialize(self.rpc("container_array_status", arrParams))
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 

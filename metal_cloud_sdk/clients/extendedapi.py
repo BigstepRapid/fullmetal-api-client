@@ -2385,7 +2385,7 @@ class ExtendedAPI(Client):
 
 		return Deserializer.deserialize(self.rpc("container_array_status", arrParams))
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,
@@ -2489,7 +2489,7 @@ class ExtendedAPI(Client):
 		return self.rpc("license_types_for_volume_template", arrParams)
 
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 

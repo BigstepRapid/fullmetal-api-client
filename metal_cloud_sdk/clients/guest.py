@@ -2402,7 +2402,7 @@ class Guest(Client):
 		return self.rpc("container_array_shared_drives", arrParams)
 
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 
@@ -2465,7 +2465,7 @@ class Guest(Client):
 			arrDatasetSubscriptions[index] = Deserializer.deserialize(arrDatasetSubscriptions[index])
 		return arrDatasetSubscriptions
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,
