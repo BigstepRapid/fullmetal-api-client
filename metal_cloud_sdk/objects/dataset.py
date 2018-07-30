@@ -105,6 +105,16 @@ class Dataset(object):
 	dataset_published = False;
 
 	"""
+	The name of the dataset readme file
+	"""
+	dataset_readme_file_name = None;
+
+	"""
+	The size in bytes of the dataset readme file
+	"""
+	dataset_readme_file_size_bytes = None;
+
+	"""
 	The schema type.
 	"""
 	type = None;

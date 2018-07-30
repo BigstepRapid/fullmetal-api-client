@@ -25,7 +25,7 @@ class API(Client):
 		return API.__instance
 
 
-	""" 230 functions available on endpoint. """
+	""" 231 functions available on endpoint. """
 
 	def cluster_create(self, strInfrastructureID, objCluster):
 
@@ -2055,7 +2055,7 @@ class API(Client):
 		return self.rpc("infrastructure_overview_children_products", arrParams)
 
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,
@@ -2129,7 +2129,7 @@ class API(Client):
 
 		return Deserializer.deserialize(self.rpc("container_array_status", arrParams))
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 
@@ -2141,36 +2141,35 @@ class API(Client):
 
 		return Deserializer.deserialize(self.rpc("dataset_create", arrParams))
 
-	def dataset_publish(self, strUserIDOwner, nDatasetID):
+	def dataset_publish(self, nDatasetID):
 
 		arrParams = [
-			strUserIDOwner,
 			nDatasetID,
 		]
 
 		self.rpc("dataset_publish", arrParams)
 
 
-	def dataset_unpublish(self, strUserIDOwner, nDatasetID):
+	def dataset_unpublish(self, nDatasetID):
 
 		arrParams = [
-			strUserIDOwner,
 			nDatasetID,
 		]
 
 		self.rpc("dataset_unpublish", arrParams)
 
 
-	def dataset_edit(self, nDatasetID, objChangedDataset):
+	def dataset_edit(self, nDatasetID, nTemporaryUploadID, objChangedDataset):
 
 		objChangedDataset = Serializer.serialize(objChangedDataset)
 
 		arrParams = [
 			nDatasetID,
+			nTemporaryUploadID,
 			objChangedDataset,
 		]
 
-		self.rpc("dataset_edit", arrParams)
+		return self.rpc("dataset_edit", arrParams)
 
 
 	def dataset_datapackage_get(self, nDatasetID):
@@ -2312,12 +2311,21 @@ class API(Client):
 		return self.rpc("dataset_readme_upload_url", arrParams)
 
 
-	def dataset_readme_download_url(self, nDatasetID):
+	def dataset_readme_download_url(self, nPublicDatasetID):
+
+		arrParams = [
+			nPublicDatasetID,
+		]
+
+		return self.rpc("dataset_readme_download_url", arrParams)
+
+
+	def dataset_readme_delete(self, nDatasetID):
 
 		arrParams = [
 			nDatasetID,
 		]
 
-		return self.rpc("dataset_readme_download_url", arrParams)
+		self.rpc("dataset_readme_delete", arrParams)
 
 

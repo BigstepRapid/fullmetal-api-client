@@ -15,6 +15,9 @@ setup(
     url=url,
     download_url= url + '/tarball/' + version,
     keywords=["metal", "cloud", "sdk"],
-    install_requires = [ 'jsonrpc2-base==0.7' ],
-    classifiers=[]
+    install_requires = [ 'jsonrpc2-base==1.2' ],
+    classifiers=[
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6',
+    ]
 )

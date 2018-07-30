@@ -2402,7 +2402,7 @@ class Guest(Client):
 		return self.rpc("container_array_shared_drives", arrParams)
 
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 
@@ -2414,16 +2414,17 @@ class Guest(Client):
 
 		return Deserializer.deserialize(self.rpc("dataset_create", arrParams))
 
-	def dataset_edit(self, nDatasetID, objChangedDataset):
+	def dataset_edit(self, nDatasetID, nTemporaryUploadID, objChangedDataset):
 
 		objChangedDataset = Serializer.serialize(objChangedDataset)
 
 		arrParams = [
 			nDatasetID,
+			nTemporaryUploadID,
 			objChangedDataset,
 		]
 
-		self.rpc("dataset_edit", arrParams)
+		return self.rpc("dataset_edit", arrParams)
 
 
 	def dataset_delete(self, nDatasetID):
@@ -2465,7 +2466,7 @@ class Guest(Client):
 			arrDatasetSubscriptions[index] = Deserializer.deserialize(arrDatasetSubscriptions[index])
 		return arrDatasetSubscriptions
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,

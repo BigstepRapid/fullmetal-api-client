@@ -475,6 +475,46 @@ class Constants(object):
 	
 	
 	"""
+	EXT2 filesystem.
+	
+	
+	"""
+	FILESYSTEM_TYPE_EXT2="ext2"
+	
+	
+	"""
+	EXT3 filesystem.
+	
+	
+	"""
+	FILESYSTEM_TYPE_EXT3="ext3"
+	
+	
+	"""
+	EXT4 filesystem.
+	
+	
+	"""
+	FILESYSTEM_TYPE_EXT4="ext4"
+	
+	
+	"""
+	None filesystem.
+	
+	Value used when no file system is specified.
+	"""
+	FILESYSTEM_TYPE_NONE="none"
+	
+	
+	"""
+	XFS filesystem.
+	
+	
+	"""
+	FILESYSTEM_TYPE_XFS="xfs"
+	
+	
+	"""
 	FirewallRule IPV4.
 	
 	

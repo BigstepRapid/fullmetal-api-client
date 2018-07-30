@@ -25,7 +25,7 @@ class ExtendedAPI(Client):
 		return ExtendedAPI.__instance
 
 
-	""" 254 functions available on endpoint. """
+	""" 255 functions available on endpoint. """
 
 	def cluster_create(self, strInfrastructureID, objCluster):
 
@@ -2385,7 +2385,7 @@ class ExtendedAPI(Client):
 
 		return Deserializer.deserialize(self.rpc("container_array_status", arrParams))
 
-	def datacenter_get(self, strUserID = None, strDatacenterName):
+	def datacenter_get(self, strUserID, strDatacenterName):
 
 		arrParams = [
 			strUserID,
@@ -2489,7 +2489,7 @@ class ExtendedAPI(Client):
 		return self.rpc("license_types_for_volume_template", arrParams)
 
 
-	def dataset_create(self, strUserID, nTemporaryUploadID = None, objDataset):
+	def dataset_create(self, strUserID, nTemporaryUploadID, objDataset):
 
 		objDataset = Serializer.serialize(objDataset)
 
@@ -2501,36 +2501,35 @@ class ExtendedAPI(Client):
 
 		return Deserializer.deserialize(self.rpc("dataset_create", arrParams))
 
-	def dataset_publish(self, strUserIDOwner, nDatasetID):
+	def dataset_publish(self, nDatasetID):
 
 		arrParams = [
-			strUserIDOwner,
 			nDatasetID,
 		]
 
 		self.rpc("dataset_publish", arrParams)
 
 
-	def dataset_unpublish(self, strUserIDOwner, nDatasetID):
+	def dataset_unpublish(self, nDatasetID):
 
 		arrParams = [
-			strUserIDOwner,
 			nDatasetID,
 		]
 
 		self.rpc("dataset_unpublish", arrParams)
 
 
-	def dataset_edit(self, nDatasetID, objChangedDataset):
+	def dataset_edit(self, nDatasetID, nTemporaryUploadID, objChangedDataset):
 
 		objChangedDataset = Serializer.serialize(objChangedDataset)
 
 		arrParams = [
 			nDatasetID,
+			nTemporaryUploadID,
 			objChangedDataset,
 		]
 
-		self.rpc("dataset_edit", arrParams)
+		return self.rpc("dataset_edit", arrParams)
 
 
 	def dataset_datapackage_get(self, nDatasetID):
@@ -2615,5 +2614,14 @@ class ExtendedAPI(Client):
 		]
 
 		return self.rpc("support_ticket_options", arrParams)
+
+
+	def instance_array_drive_arrays(self, strInstanceArrayID):
+
+		arrParams = [
+			strInstanceArrayID,
+		]
+
+		return self.rpc("instance_array_drive_arrays", arrParams)
 
 
