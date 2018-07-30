@@ -8,6 +8,7 @@ index.html
 logger.txt
 
 dist/*
+examples/Communication.log
 
 # for Pycharm
 .idea/*

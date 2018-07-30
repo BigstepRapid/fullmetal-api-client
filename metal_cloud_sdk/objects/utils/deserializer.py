@@ -1,6 +1,7 @@
 import inspect
 import json
 import importlib
+from six import string_types
 
 class Deserializer(object):
     @staticmethod
@@ -10,7 +11,7 @@ class Deserializer(object):
 
         @return an object from JSON
         """
-        if isinstance(mxJSON, basestring):
+        if isinstance(mxJSON, string_types):
             dictJSON = json.loads(mxJSON)
         elif isinstance(mxJSON, dict):
             dictJSON = mxJSON

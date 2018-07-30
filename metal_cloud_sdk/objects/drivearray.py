@@ -136,3 +136,8 @@ class DriveArray(object):
 	after each successful edit operation.
 	"""
 	drive_array_change_id = None;
+
+	"""
+	Drive array file system information
+	"""
+	drive_array_filesystem = None;

@@ -107,3 +107,8 @@ class Drive(object):
 	OperatingSystem
 	"""
 	drive_operating_system = None;
+
+	"""
+	Drive file system information
+	"""
+	drive_filesystem = None;
